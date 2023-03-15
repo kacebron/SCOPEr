@@ -3,6 +3,7 @@
 export(call_output)
 export(create_ts_input)
 export(input_data_default)
+export(run_scope)
 export(set_filenames)
 export(set_options)
 export(set_paramFile)

@@ -13,3 +13,8 @@ devtools::create("SCOPEr1")
 devtools::document()
 
 usethis::use_vignette("introduction")
+
+devtools::load_all()
+
+
+

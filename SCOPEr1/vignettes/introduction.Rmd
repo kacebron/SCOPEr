@@ -17,3 +17,20 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(SCOPEr1)
 ```
+
+This package runs SCOPE in R language. 
+
+Sample workflow is below:
+
+Step 1: install SCOPEr1 package from github
+```{r}
+devtools::install_github("SCOPEr", "kacebron")
+```
+Step 2: initiate run_scope to run a test verifying integrity of copy of SCOPE model
+```{r}
+run_scope("../../SCOPE/SCOPE.m")
+```
+Step 3: modify setoptions.csv using set_options()
+``` {r}
+
+```
