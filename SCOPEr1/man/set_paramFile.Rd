@@ -4,16 +4,21 @@
 \alias{set_paramFile}
 \title{Modify set_parameter_filenames.csv}
 \usage{
-set_paramFile(input)
+set_paramFile(
+  path = "../../SCOPE/set_parameter_filenames.csv",
+  input = "input_data_latin_hypercube.csv"
+)
+}
+\arguments{
+\item{path}{Filepath of the directory where set_parameter_filenames.csv is stored}
+
+\item{input}{Change the name of the .csv file where input data will be grabbed by SCOPE.}
+}
+\value{
+\strong{path} Value is a string that represents filepath of the directory where set_parameter_filenames.csv is stored. Default value is "../../SCOPE/set_parameter_filenames.csv" which should work even if you don't specify the filepath. In case it does not, copy and paste the long filepath as a value of this argument.
+
+\strong{input} By default, the value of this argument is "input_data_latin_hypercube.csv" which is also the default setting in SCOPE. Change this to "input_data_default.csv" if you want to simulate individual runs or time series experiments. Note: You can also changed the default values inside the input_data_default.csv using the function input_data_default().
 }
 \description{
-This function helps you modify set_parameter_filenames.csv input file in
-matlab for SCOPE to run. It works in three steps:
-\enumerate{
-\item It reads the set_parameter_filenames.csv file using read_file().
-\item It lets you change input file from the default value of
-"input_data_latin_hypercube.csv" to "input_data_default.csv" using the
-argument "input"
-\item It saves the changes using write.table().
-}
+This function helps you modify set_parameter_filenames.csv input file.
 }

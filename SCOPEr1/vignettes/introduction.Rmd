@@ -32,5 +32,19 @@ run_scope("../../SCOPE/SCOPE.m")
 ```
 Step 3: modify setoptions.csv using set_options()
 ``` {r}
-
+set_options(verify = FALSE, simulation = 1)
 ```
+Step 4: modify set_parameters_file.csv using set_paramFile()
+``` {r}
+set_paramFile(input = "input_data_default.csv")
+```
+Step 5: create an input directory (only for time series simulations)
+```{r}
+dir.name <- c("example_name")
+dir.create(sprintf("../../SCOPE/input/dataset %s", dir.name))
+```
+Step 6: create an input filename
+```{r}
+input.filename <- "example_input_filename"
+```
+Step 7: 

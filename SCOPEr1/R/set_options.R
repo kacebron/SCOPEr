@@ -2,46 +2,47 @@
 #'
 #' This function helps you modify setoptions.csv
 #'
-#' @param filepath Directory where setoptions.csv is stored.
+#' @param path Filepath of the directory where setoptions.csv is stored.
 #' @param verify (For User's Comfort) Lets you switch verification mode.
 #' @param simulation Defines rules for input reading.
-#' @param lite Switch in RTMo()
-#' @param calc_fluor Calculation of fluorescence. This is a switch in SCOPE.m, calc_brdf()
-#' @param calc_planck Calculate spectrum of thermal radiation with spectral emissivity instead of broadband. WARNING! This is only effective with calc_ebal==1
-#' @param calc_xanthophyllabs Calculate dynamic xanthopyll absorption (zeaxanthin) for simulating PRI (photochemical reflectance index). WARNING! only effective with calc_ebal==1
+#' @param lite Switch in RTMo().
+#' @param calc_fluor Calculation of fluorescence. This is a switch in SCOPE.m, calc_brdf().
+#' @param calc_planck Calculate spectrum of thermal radiation with spectral emissivity instead of broadband. WARNING! This is only effective with calc_ebal==1.
+#' @param calc_xanthophyllabs Calculate dynamic xanthopyll absorption (zeaxanthin) for simulating PRI (photochemical reflectance index). WARNING! only effective with calc_ebal==1.
 #' @param soilspectrum Calculate soil reflectance or use from a file in ./input/soil_spectra. Switch in SCOPE.m
-#' @param Fluorescence_model Switch in ebal()
-#' @param applTcorr Correct Vcmax and rate constants for temperature. This is only effective with Fluorescence_model == 0 i.e. for biochemical(). This is a switch in ebal()
-#' @param saveCSV (For User's Comfort) Switch in SCOPE.m, bin_to_csv()
-#' @param mSCOPE Switch in SCOPE.m
-#' @param calc_directional Calculate BRDF and directional temperature for many angles specified in the file: directional. Warning! This is only effective with calc_ebal == 1. Be patient, this takes some time. This is a Switch in SCOPE.m, calc_brdf()
-#' @param calc_vert_profiles Calculation of vertical profiles (per 60 canopy layers). Corresponding structure profiles. This is a Switch in SCOPE.m, RTMo() and ebal()
-#' @param soil_heat_method Method of ground heat flux (G) calculation. In soil_heat_method 0 and 1 soil thermal inertia (GAM) is calculated from inputs. Switch in SCOPE.m, select_input(), ebal()
-#' @param calc_rss_rbs soil resistance for evaporation from the pore space (rss) and soil boundary layer resistance (rbs). Switch in select_input()
-#' @param MoninObukhov Switch in ebal()
-#' @param save_spectral (For User's Comfort) Save files with full spectrum. May reach huge sizes in long time-series. Switch in create_output_files_binary()
+#' @param Fluorescence_model Switch in ebal().
+#' @param applTcorr Correct Vcmax and rate constants for temperature. This is only effective with Fluorescence_model == 0 i.e. for biochemical(). This is a switch in ebal().
+#' @param saveCSV (For User's Comfort) Switch in SCOPE.m, bin_to_csv().
+#' @param mSCOPE Switch in SCOPE.m.
+#' @param calc_directional Calculate BRDF and directional temperature for many angles specified in the file: directional. Warning! This is only effective with calc_ebal == 1. Be patient, this takes some time. This is a Switch in SCOPE.m, calc_brdf().
+#' @param calc_vert_profiles Calculation of vertical profiles (per 60 canopy layers). Corresponding structure profiles. This is a Switch in SCOPE.m, RTMo() and ebal().
+#' @param soil_heat_method Method of ground heat flux (G) calculation. In soil_heat_method 0 and 1 soil thermal inertia (GAM) is calculated from inputs. Switch in SCOPE.m, select_input(), ebal().
+#' @param calc_rss_rbs soil resistance for evaporation from the pore space (rss) and soil boundary layer resistance (rbs). Switch in select_input().
+#' @param MoninObukhov Switch in ebal().
+#' @param save_spectral (For User's Comfort) Save files with full spectrum. May reach huge sizes in long time-series. Switch in create_output_files_binary().
 #'
-#' @return **filepath** By default, filepath value is "../../SCOPE/input/setoptions.csv" which should redirect you to your parent directory. If not, then copy-paste the location of setoptions.csv within the open-close quotations.
+#' @return **MAIN**
+#' @return **path** By default, path value is "../../SCOPE/input/setoptions.csv" which should redirect you to your parent directory. If not, then copy-paste the location of setoptions.csv within the open-close quotations.
 #' @return **verify** Default value is TRUE which means the run will compare output to the verification dataset to test the integrity of your SCOPE copy. FALSE will switch off the verification mode. Note: You would need to switch off the verification mode if you want to do actual simulations.
 #' @return **simulation** Default value is 0 which is equal to individual runs. Other options can be 1 (time series runs) or 2 (for look-up table).
-#' @return **lite** By default, the value is TRUE which means it will execute Lite SCOPE with [nlayers x 1] sunlit leaves, sunlit leaf inclinations are not accounted for. FALSE will run in normal SCOPE execution with [13 x 36 x nlayers] sunlit leaves. This is equivalent to changing to 0 in the setoptions.csv file
+#' @return **OTHERS**
+#' @return **lite** By default, the value is TRUE which means it will execute Lite SCOPE with [nlayers x 1] sunlit leaves, sunlit leaf inclinations are not accounted for. FALSE will run in normal SCOPE execution with [13 x 36 x nlayers] sunlit leaves. This is equivalent to changing to 0 in the setoptions.csv file.
 #' @return **calc_fluor** By default, the value is TRUE which means RTMf() is launched in SCOPE.m and calc_brdf() (if calc_directional). Total emitted fluorescence is calculated by SCOPE.m. If value is FALSE, no fluorescence output.
 #' @return **calc_planck** By default, the value is TRUE which means RTMt_planck() is launched in SCOPE.m and calc_brdf() (if calc_directional).Calculation is done per each wavelength thus takes more time than Stefan-Boltzman. If value is FALSE, RTMt_sb() - broadband brightness temperature is calculated in accordance to Stefan-Boltzman’s equation.
 #' @return **calc_xanthophyllabs** By default, the value is TRUE which means RTMz() is launched in SCOPE.m and calc_brdf() (if calc_directional). If FALSE, value is changed to 0.
-#' @return **soilspectrum** By default, the value is FALSE which means it uses soil spectrum from the file with soil.spectrum default file is soilnew.txt, can be changed on the filenames sheet soil_file cell variable name is rsfile. If value is TRUE, it will simulate soil spectrum with the BSM model (BSM()). Parameters are fixed in code
+#' @return **soilspectrum** By default, the value is FALSE which means it uses soil spectrum from the file with soil.spectrum default file is soilnew.txt, can be changed on the filenames sheet soil_file cell variable name is rsfile. If value is TRUE, it will simulate soil spectrum with the BSM model (BSM()). Parameters are fixed in code.
 #' @return **fluorescence_model** By default, the value is FALSE which means it will run empirical, with sigmoid for Kn: biochemical() (Berry-Van der Tol). If value is TRUE, it will use biochemical_MD12() (von Caemmerer-Magnani).
-#' @return **applTcorr** By default the value is TRUE which means it will do correction in accordance to Q10 rule. If FALSE, it will change the value to 0 (no description in SCOPE's github)
-#' @return **saveCSV** By default, the value is TRUE which means it will convert .bin files to .csv with bin_to_csv(), delete .bin files. If value is FALSE, it will leave .bin files in output folder
+#' @return **applTcorr** By default the value is TRUE which means it will do correction in accordance to Q10 rule. If FALSE, it will change the value to 0 (no description in SCOPE's github).
+#' @return **saveCSV** By default, the value is TRUE which means it will convert .bin files to .csv with bin_to_csv(), delete .bin files. If value is FALSE, it will leave .bin files in output folder.
 #' @return **mSCOPE** By default, the value is FALSE which means it will do a traditional single layer SCOPE. If changed to TRUE, it will run a multilayer mSCOPE (see details here: https://scope-model.readthedocs.io/en/master/mSCOPE.html#mscope).
-#' @return **calc_directional** Default value is FALSE. If TRUE, struct directional is loaded from the file directional. calc_brdf() is launched in SCOPE.m
+#' @return **calc_directional** Default value is FALSE. If TRUE, struct directional is loaded from the file directional. calc_brdf() is launched in SCOPE.m.
 #' @return **calc_vert_profiles** Default value is FALSE which means profiles are not calculated. If TRUE, Photosynthetically active radiation (PAR) per layer is calculated in RTMo(). Energy, temperature and photosynthesis fluxes per layer are calculated in ebal(). Fluorescence fluxes are calculated in RTMf() if (calc_fluor).
 #' @return **soil_heat_method** Default value is 2 which means as constant fraction (0.35) of soil net radiation. Change to 0 and it will do standard calculation of thermal inertia from soil characteristic. 1 means empirically calibrated formula from soil moisture content. Soil_Inertia1() in select_input().
-#' @return **calc_rss_rbs** Default value is FALSE which means it will use resistance rss and rbs as provided in inputdata soil. If value is TRUE, it will calculate rss from soil moisture content and correct rbs for LAI calc_rssrbs()
+#' @return **calc_rss_rbs** Default value is FALSE which means it will use resistance rss and rbs as provided in inputdata soil. If value is TRUE, it will calculate rss from soil moisture content and correct rbs for LAI calc_rssrbs().
 #' @return **MoninObukhov** Default value is TRUE which means it will apply Monin-Obukhov atmospheric stability correction. If FALSE, it will not apply Monin-Obukhov atmospheric stability correction.
 #' @return **save_spectral** Default value is TRUE which will save, FALSE it will not save.
-#'
 #' @export
-set_options <- function(filepath = "../../SCOPE/input/setoptions.csv",
+set_options <- function(path = "../../SCOPE/input/setoptions.csv",
                         verify = TRUE,
                         simulation = 0,
                         lite = TRUE,
@@ -60,7 +61,7 @@ set_options <- function(filepath = "../../SCOPE/input/setoptions.csv",
                         MoninObukhov = TRUE,
                         save_spectral = TRUE
                         ){
-  set_options <- readr::read_file(filepath)
+  set_options <- readr::read_file(path)
   set_options <- stringr::str_replace_all(set_options,
                                  c("(\\n)$" = "",
                                    ".(?=,verify)" = ifelse(verify == TRUE, "1", "0"),
@@ -81,6 +82,6 @@ set_options <- function(filepath = "../../SCOPE/input/setoptions.csv",
                                    ".(?=,MoninObukhov)" = ifelse(MoninObukhov == TRUE, "1", "0"),
                                    ".(?=,save_spectral)" = ifelse(save_spectral == TRUE, "1", "0")
                                    ))
-  utils::write.table(set_options, file = filepath, sep=",",
+  utils::write.table(set_options, file = path, sep=",",
               col.names = FALSE, row.names = FALSE, quote = FALSE)
 }

@@ -4,10 +4,10 @@
 \alias{run_scope}
 \title{Runs SCOPE.m in R}
 \usage{
-run_scope(filepath = "../../SCOPE/SCOPE.m")
+run_scope(path = "../../SCOPE/SCOPE.m")
 }
 \arguments{
-\item{filepath}{is the location of the directory where SCOPE.m is stored.}
+\item{path}{is the location of the directory where SCOPE.m is stored.}
 }
 \value{
 The default value is "../../SCOPE/SCOPE.m". If this does not work, this means either you modify the name of your SCOPE model (\emph{which is not recommended}) or your current working directory is somewhere else in the universe. In any case, just copy and paste the original filepath of SCOPE.m enclosed in quotations in case the default value does not work.
