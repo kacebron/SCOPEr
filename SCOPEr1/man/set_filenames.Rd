@@ -5,7 +5,7 @@
 \title{Modify filenames.csv}
 \usage{
 set_filenames(
-  path = "../../SCOPE/input/filenames.csv",
+  path,
   simulation_name,
   dataset_dir,
   meteo_ec_csv,
@@ -115,4 +115,8 @@ set_filenames(
 }
 \description{
 This function helps you modify filenames.csv
+}
+\examples{
+set_filenames(path = "../../SCOPE/input/filenames.csv", simulation_name = "test")
+
 }

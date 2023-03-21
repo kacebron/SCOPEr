@@ -24,7 +24,7 @@ Sample workflow is below:
 
 Step 1: install SCOPEr1 package from github
 ```{r}
-devtools::install_github("SCOPEr", "kacebron")
+devtools::install_github("kacebron/SCOPEr")
 ```
 Step 2: initiate run_scope to run a test verifying integrity of copy of SCOPE model
 ```{r}
@@ -32,7 +32,7 @@ run_scope("../../SCOPE/SCOPE.m")
 ```
 Step 3: modify setoptions.csv using set_options()
 ``` {r}
-set_options(verify = FALSE, simulation = 1)
+set_options(path = "../../SCOPE/input/setoptions.csv", verify = FALSE, simulation = 1)
 ```
 Step 4: modify set_parameters_file.csv using set_paramFile()
 ``` {r}
@@ -47,4 +47,52 @@ Step 6: create an input filename
 ```{r}
 input.filename <- "example_input_filename"
 ```
-Step 7: 
+Step 7: set input/output names and add/delete column names for certain parameters inside filenames.csv
+```{r}
+set_filenames(simulation_name = dir.name, 
+          dataset_dir = dir.name,
+          meteo_ec_csv = input.filename,
+          tts = FALSE) # when FALSE, this automatically computes solar zenith angle (tts) from the timezone, latitude and longitude provided inside the input_data_default.csv
+```
+Step 8: create duration and temporal resolution of time series
+```{r}
+start.time <- as.character("2012-07-03 00:00")
+end.time <- as.character("2017-08-31 23:30")
+span <- "30 mins"
+```
+Step 9: create constant parameters (this can be linked to some ground truth data)
+```{r}
+PCA.means <- read.csv("3_output_clean_data/PCA_groupings_mean.csv")
+
+Cluster.no <- 3
+    
+par.constant <- c(PCA.means$ChlTot_ug_cm2_mean[Cluster.no], 
+                      PCA.means$Carot_ug_cm2_mean[Cluster.no], 
+                      PCA.means$anth_ug_cm2_mean[Cluster.no], 
+                      PCA.means$dmc_g_per_cm2_mean[Cluster.no], 0.009, 0, 1.4, 6.5, -0.35, -0.15, PCA.means$Vcmax_mean[Cluster.no], 
+      8, 0.1, 70, 0, 90)
+    names(par.constant) <- c("Cab", "Cca", "Cant", "Cdm", "Cw", "Cs", 
+      "N", "LAI", "LIDFa", "LIDFb", "Vcmax25", "BallBerrySlope",
+      "BallBerry0","tts", 
+      "tto", "psi")
+```
+Step 10: create variable parameters (still need to work on the bci meteo data)
+```{r}
+load(file="../bcipanama/3_output_clean_data/bci_ec_flux.Rda")
+    par.variable.names <- c("Rs", "tair", "RH")
+    par.variable <- bci_ec_flux[(bci_ec_flux$date >= start.time & 
+      bci_ec_flux$date <= end.time 
+      #& !is.na(bci_ec_flux$date)
+      ), 
+      par.variable.names]
+    
+    colnames(par.variable) <- c("Rin", "Ta", "RH")
+```
+Step 11: create a input variables for time series (Note: solar zenith and azimuth angle automatically computes based on time, lat and long)
+```{r}
+create_ts_input(start_time, end_time, span = span, run_nightTime = FALSE, 
+              par_constant, par_variable,
+              dir_name = paste0("../SCOPE/input/dataset ", dir.name), 
+              filename = input.filename)
+```
+    

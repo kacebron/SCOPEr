@@ -37,9 +37,11 @@
 #' @param SMC volumetric soil moisture content in the root zone
 #' @param t Julian day (decimal)
 #'
+#' @examples set_filenames(path = "../../SCOPE/input/filenames.csv", simulation_name = "test")
+#'
 #' @return **tts** Lets you specify the column name for the solar zenith angle if th value is TRUE. Place a FALSE value if latitude and longitude are specified in the input.filename.csv
 #' @export
-set_filenames <- function(path = "../../SCOPE/input/filenames.csv",
+set_filenames <- function(path,
                           simulation_name,
                           dataset_dir,
                           meteo_ec_csv,
