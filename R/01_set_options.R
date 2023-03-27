@@ -42,8 +42,7 @@
 #' @return **MoninObukhov** Default value is TRUE which means it will apply Monin-Obukhov atmospheric stability correction. If FALSE, it will not apply Monin-Obukhov atmospheric stability correction.
 #' @return **save_spectral** Default value is TRUE which will save, FALSE it will not save.
 #' @export
-set_options <- function(path = "../../SCOPE/input/setoptions.csv",
-                        verify = TRUE,
+set_options <- function(verify = TRUE,
                         simulation = 0,
                         lite = TRUE,
                         calc_fluor = TRUE,
@@ -61,6 +60,7 @@ set_options <- function(path = "../../SCOPE/input/setoptions.csv",
                         MoninObukhov = TRUE,
                         save_spectral = TRUE
                         ){
+  path <- "./inst/extdata/setoptions.csv"
   set_options <- readr::read_file(path)
   set_options <- stringr::str_replace_all(set_options,
                                  c("(\\n)$" = "",

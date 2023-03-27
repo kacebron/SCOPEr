@@ -15,21 +15,22 @@
 #' @param rwc within canopy layer resistance
 #'
 #' @return Default values are given based on default SCOPE values in github
+#' @examples input_data_aero(zo = 0.3)
 #' @export
-input_data_aero <- function(path = "../SCOPE/input/input_data_default.csv",
-                                zo = 0.25,
-                                d = 1.34,
-                                Cd = 0.3,
-                                rb = 10,
-                                CR = 0.35,
-                                CD1 = 20.6,
-                                Psicor = 0.2,
-                                CSSOIL = 0.01,
-                                rbs = 10,
-                                rwc = 0
+input_data_aero <- function(zo = 0.25,
+                            d = 1.34,
+                            Cd = 0.3,
+                            rb = 10,
+                            CR = 0.35,
+                            CD1 = 20.6,
+                            Psicor = 0.2,
+                            CSSOIL = 0.01,
+                            rbs = 10,
+                            rwc = 0
 ){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=zo,).+" = zo,
                                                 "(?<=d,).+" = d,
                                                 "(?<=Cd,).+" = Cd,
@@ -42,6 +43,6 @@ input_data_aero <- function(path = "../SCOPE/input/input_data_default.csv",
                                                 "(?<=rwc,).+" = rwc
   )
   )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

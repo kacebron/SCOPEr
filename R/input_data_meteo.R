@@ -15,8 +15,7 @@
 #'
 #' @return Default values are given based on default SCOPE values in github
 #' @export
-input_data_meteo <- function(path = "../SCOPE/input/input_data_default.csv",
-                                z = 5,
+input_data_meteo <- function(   z = 5,
                                 Rin = 600,
                                 Ta = 20,
                                 Rli = 300,
@@ -26,8 +25,9 @@ input_data_meteo <- function(path = "../SCOPE/input/input_data_default.csv",
                                 Ca = 410,
                                 Oa = 209
 ){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=z,).+" = z,
                                                 "(?<=Rin,).+" = Rin,
                                                 "(?<=Ta,).+" = Ta,
@@ -39,6 +39,6 @@ input_data_meteo <- function(path = "../SCOPE/input/input_data_default.csv",
                                                 "(?<=Oa,).+" = Oa
   )
   )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

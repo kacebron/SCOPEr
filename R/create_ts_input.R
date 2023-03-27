@@ -31,6 +31,6 @@ create_ts_input <- function(start_time, end_time, span = "30 min",
     input_df <- input_df[which(input_df$Rin > 0), ]
   }
 
-  write.csv(as.data.frame(input_df), sprintf("%s/%s.csv", dir_name, filename),
+  utils::write.csv(as.data.frame(input_df), sprintf("dataset %s/%s.csv", dir_name, filename), 
             row.names = FALSE, quote = FALSE)
 }

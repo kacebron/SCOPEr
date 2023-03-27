@@ -20,8 +20,7 @@
 #'
 #' @return Default values are given based on default SCOPE values in github
 #' @export
-input_data_leafBiochem <- function(path = "../SCOPE/input/input_data_default.csv",
-                                Vcmax25 = 60,
+input_data_leafBiochem <- function(Vcmax25 = 60,
                                 BallBerrySlope = 8,
                                 BallBerry0 = 0.01,
                                 Type = 0,
@@ -37,8 +36,9 @@ input_data_leafBiochem <- function(path = "../SCOPE/input/input_data_default.csv
                                 stressfactor = 1,
                                 fqe = 0.01
                                 ){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=Vcmax25,).+" = Vcmax25,
                                                 "(?<=BallBerrySlope,).+" = BallBerrySlope,
                                                 "(?<=BallBerry0,).+" = BallBerry0,
@@ -56,6 +56,6 @@ input_data_leafBiochem <- function(path = "../SCOPE/input/input_data_default.csv
                                                 "(?<=fqe,).+" = fqe
                                                 )
                                  )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

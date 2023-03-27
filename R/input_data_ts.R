@@ -11,15 +11,15 @@
 #'
 #' @return Default values are given based on default SCOPE values in github
 #' @export
-input_data_ts <- function(path = "../SCOPE/input/input_data_default.csv",
-                                startDOY = 20060618,
-                                endDOY = 20300101,
-                                LAT = 51.55,
-                                LON = 5.55,
-                                timezn = 1
+input_data_ts <- function(startDOY = 20060618,
+                          endDOY = 20300101,
+                          LAT = 51.55,
+                          LON = 5.55,
+                          timezn = 1
 ){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=startDOY,).+" = startDOY,
                                                 "(?<=endDOY,).+" = endDOY,
                                                 "(?<=LAT,).+" = LAT,
@@ -27,6 +27,6 @@ input_data_ts <- function(path = "../SCOPE/input/input_data_default.csv",
                                                 "(?<=timezn,).+" = timezn
   )
   )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

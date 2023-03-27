@@ -8,19 +8,20 @@
 #' @param psi azimuthal difference between solar and observation angle; relative azimuth angle (deg)
 #'
 #' @return Default values are given based on default SCOPE values in github
+#' @examples input_data_angles(tts = 35)
 #' @export
-input_data_angles <- function(path = "../SCOPE/input/input_data_default.csv",
-                                tts = 30,
-                                tto = 0,
-                                psi = 0
+input_data_angles <- function(tts = 30,
+                              tto = 0,
+                              psi = 0
 ){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=tts,).+" = tts,
                                                 "(?<=tto,).+" = tto,
                                                 "(?<=psi,).+" = psi
   )
   )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

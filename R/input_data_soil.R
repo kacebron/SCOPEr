@@ -16,20 +16,20 @@
 #'
 #' @return Default values are given based on default SCOPE values in github
 #' @export
-input_data_soil <- function(path = "../SCOPE/input/input_data_default.csv",
-                                spectrum = 1,
-                                rss = 500,
-                                rs_thermal = 0.06,
-                                cs = 1180,
-                                rhos = 1800,
-                                lambdas = 1.55,
-                                SMC = 25,
-                                BSMBrightness = 0.5,
-                                BSMlat = 25,
-                                BSMlon = 45
+input_data_soil <- function(spectrum = 1,
+                            rss = 500,
+                            rs_thermal = 0.06,
+                            cs = 1180,
+                            rhos = 1800,
+                            lambdas = 1.55,
+                            SMC = 25,
+                            BSMBrightness = 0.5,
+                            BSMlat = 25,
+                            BSMlon = 45
                                 ){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=spectrum,).+" = spectrum,
                                                 "(?<=rss,).+" = rss,
                                                 "(?<=rs_thermal,).+" = rs_thermal,
@@ -42,6 +42,6 @@ input_data_soil <- function(path = "../SCOPE/input/input_data_default.csv",
                                                 "(?<=BSMlon,).+" = BSMlon
   )
   )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

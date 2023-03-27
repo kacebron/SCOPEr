@@ -16,8 +16,7 @@
 #' @param tau_thermal broadband thermal transmitance
 #' @return Default values are given based on default SCOPE values in github
 #' @export
-input_data_PROSPECT <- function(path = "../SCOPE/input/input_data_default.csv",
-                                Cab = 40,
+input_data_PROSPECT <- function(Cab = 40,
                                 Cca = 10,
                                 Cdm = 0.012,
                                 Cw = 0.009,
@@ -28,8 +27,9 @@ input_data_PROSPECT <- function(path = "../SCOPE/input/input_data_default.csv",
                                 N = 1.5,
                                 rho_thermal = 0.01,
                                 tau_thermal = 0.01){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=Cab,).+" = Cab,
                                                 "(?<=Cca,).+" = Cca,
                                                 "(?<=Cdm,).+" = Cdm,
@@ -43,6 +43,6 @@ input_data_PROSPECT <- function(path = "../SCOPE/input/input_data_default.csv",
                                                 "(?<=tau_thermal,).+" = tau_thermal
                                                 )
                                  )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

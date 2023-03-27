@@ -12,18 +12,19 @@
 #' @param crowndiameter crown diameter (no units in github)
 #'
 #' @return Default values are given based on default SCOPE values in github
+#' @examples input_data_canopy(LAI = 6.5)
 #' @export
-input_data_canopy <- function(path = "../SCOPE/input/input_data_default.csv",
-                                LAI = 3,
-                                hc = 2,
-                                LIDFa = -0.35,
-                                LIDFb = -0.15,
-                                leafwidth = 0.1,
-                                Cv = 1,
-                                crowndiameter = 1
-                                ){
-  input_SCOPE <- read_file(path)
-  input_SCOPE <- str_replace_all(input_SCOPE, c("(\\n)$" = "",
+input_data_canopy <- function(LAI = 3,
+                              hc = 2,
+                              LIDFa = -0.35,
+                              LIDFb = -0.15,
+                              leafwidth = 0.1,
+                              Cv = 1,
+                              crowndiameter = 1
+                              ){
+  path <- file.choose()
+  input_SCOPE <- readr::read_file(path)
+  input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=LAI,).+" = LAI,
                                                 "(?<=hc,).+" = hc,
                                                 "(?<=LIDFa,).+" = LIDFa,
@@ -33,6 +34,6 @@ input_data_canopy <- function(path = "../SCOPE/input/input_data_default.csv",
                                                 "(?<=crowndiameter,).+" = crowndiameter
   )
   )
-  write.table(input_SCOPE, file = '../SCOPE/input/input_data_default.csv',
+  utils::write.table(input_SCOPE, file = path,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

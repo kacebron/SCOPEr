@@ -41,8 +41,7 @@
 #'
 #' @return **tts** Lets you specify the column name for the solar zenith angle if th value is TRUE. Place a FALSE value if latitude and longitude are specified in the input.filename.csv
 #' @export
-set_filenames <- function(path,
-                          simulation_name,
+set_filenames <- function(simulation_name,
                           dataset_dir,
                           meteo_ec_csv,
                           t = TRUE,
@@ -76,6 +75,7 @@ set_filenames <- function(path,
                           Vcmax25 = TRUE,
                           BallBerrySlope = TRUE)
                         {
+  path <- file.choose()
   filenames <- readr::read_file(path)
   filenames <- stringr::str_replace_all(filenames,
                                c("(\\n)$" = "",
