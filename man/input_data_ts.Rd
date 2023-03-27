@@ -5,7 +5,6 @@
 \title{Modifies input values for timeseries parameters within input_data_default.csv}
 \usage{
 input_data_ts(
-  path = "../SCOPE/input/input_data_default.csv",
   startDOY = 20060618,
   endDOY = 20300101,
   LAT = 51.55,
@@ -14,8 +13,6 @@ input_data_ts(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{startDOY}{Julian day (decimal) start of simulations}
 
 \item{endDOY}{Julian day (decimal) end of simulations}
@@ -25,6 +22,8 @@ input_data_ts(
 \item{LON}{Longitude (decimal deg)}
 
 \item{timezn}{east of Greenwich (hours)}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github

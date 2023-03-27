@@ -4,7 +4,7 @@
 \alias{run_scope}
 \title{Runs SCOPE.m in R}
 \usage{
-run_scope(path = "../../SCOPE/SCOPE.m")
+run_scope(path)
 }
 \arguments{
 \item{path}{is the location of the directory where SCOPE.m is stored.}

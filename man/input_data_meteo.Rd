@@ -5,7 +5,6 @@
 \title{Modifies input values for Meteorological parameters within input_data_default.csv}
 \usage{
 input_data_meteo(
-  path = "../SCOPE/input/input_data_default.csv",
   z = 5,
   Rin = 600,
   Ta = 20,
@@ -18,8 +17,6 @@ input_data_meteo(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{z}{measurement height of meteorological data (m)}
 
 \item{Rin}{broadband incoming shortwave radiation (0.4-2.5 um) (W m-2)}
@@ -37,6 +34,8 @@ input_data_meteo(
 \item{Ca}{atmospheric CO2 concentration (ppm)}
 
 \item{Oa}{atmospheric O2 concentration (per mille)}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github

@@ -5,7 +5,6 @@
 \title{Modifies input values for aerodynamic parameters within input_data_default.csv}
 \usage{
 input_data_aero(
-  path = "../SCOPE/input/input_data_default.csv",
   zo = 0.25,
   d = 1.34,
   Cd = 0.3,
@@ -19,8 +18,6 @@ input_data_aero(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{zo}{roughness length for momentum of the canopy (m)}
 
 \item{d}{displacement height (m)}
@@ -40,10 +37,15 @@ input_data_aero(
 \item{rbs}{soil boundary layer resistance (from Aerodynamic) (s m-1)}
 
 \item{rwc}{within canopy layer resistance}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github
 }
 \description{
 This function lets you modify input values for aerodynamic parameters inside input_data_default.csv contains.
+}
+\examples{
+input_data_aero(zo = 0.3)
 }

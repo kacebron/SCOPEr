@@ -5,7 +5,6 @@
 \title{Modifies Leaf biochemical module within input_data_default.csv}
 \usage{
 input_data_leafBiochem(
-  path = "../SCOPE/input/input_data_default.csv",
   Vcmax25 = 60,
   BallBerrySlope = 8,
   BallBerry0 = 0.01,
@@ -24,8 +23,6 @@ input_data_leafBiochem(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{Vcmax25}{maximum carboxylation capacity (at optimum temperature of 25C, former Vcmo) (umol m-2 s-1)}
 
 \item{BallBerrySlope}{slope of Ball-Berry stomatal conductance model (former m)}
@@ -53,6 +50,8 @@ input_data_leafBiochem(
 \item{stressfactor}{optional input: stress factor to reduce Vcmax (for example soil moisture, leaf age)}
 
 \item{fqe}{fluorescence quantum yield efficiency at photosystem level}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github

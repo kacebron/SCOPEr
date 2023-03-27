@@ -5,7 +5,6 @@
 \title{Modifies PROSPECT module within input_data_default.csv}
 \usage{
 input_data_PROSPECT(
-  path = "../SCOPE/input/input_data_default.csv",
   Cab = 40,
   Cca = 10,
   Cdm = 0.012,
@@ -20,8 +19,6 @@ input_data_PROSPECT(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{Cab}{Chlorophyll a b content (ug cm-2)}
 
 \item{Cca}{Carotenoid content. Usually 25\% of Cab if options.Cca_function_of_Cab (ug cm-2)}
@@ -43,6 +40,8 @@ input_data_PROSPECT(
 \item{rho_thermal}{broadband thermal reflectance}
 
 \item{tau_thermal}{broadband thermal transmitance}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github

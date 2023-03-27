@@ -5,7 +5,6 @@
 \title{Modifies module for canopy properties within input_data_default.csv}
 \usage{
 input_data_canopy(
-  path = "../SCOPE/input/input_data_default.csv",
   LAI = 3,
   hc = 2,
   LIDFa = -0.35,
@@ -16,8 +15,6 @@ input_data_canopy(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{LAI}{leaf area index (m2 m-2)}
 
 \item{hc}{vegetation height (m)}
@@ -31,10 +28,15 @@ input_data_canopy(
 \item{Cv}{(no description in github)}
 
 \item{crowndiameter}{crown diameter (no units in github)}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github
 }
 \description{
 This function lets you modify input values for canopy properties inside input_data_default.csv contains.
+}
+\examples{
+input_data_canopy(LAI = 6.5)
 }

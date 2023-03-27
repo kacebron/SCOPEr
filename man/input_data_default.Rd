@@ -5,7 +5,6 @@
 \title{General function to modify input_data_default.csv}
 \usage{
 input_data_default(
-  path = "../SCOPE/input/input_data_default.csv",
   Cab = 40,
   Cca = 10,
   Cdm = 0.012,
@@ -27,7 +26,6 @@ input_data_default(
   Knalpha = 2.83,
   Knbeta = 0.114,
   Tyear = 15,
-  beta = 0.51,
   kNPQs = 0,
   qLs = 1,
   stressfactor = 1,
@@ -53,7 +51,6 @@ input_data_default(
   Rin = 600,
   Ta = 20,
   Rli = 300,
-  p = 970,
   ea = 15,
   u = 2,
   Ca = 410,

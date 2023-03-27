@@ -4,25 +4,23 @@
 \alias{input_data_angles}
 \title{Modifies input values for solar angle within input_data_default.csv}
 \usage{
-input_data_angles(
-  path = "../SCOPE/input/input_data_default.csv",
-  tts = 30,
-  tto = 0,
-  psi = 0
-)
+input_data_angles(tts = 30, tto = 0, psi = 0)
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{tts}{solar zenith angle (deg)}
 
 \item{tto}{observer zenith angle (deg)}
 
 \item{psi}{azimuthal difference between solar and observation angle; relative azimuth angle (deg)}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github
 }
 \description{
 This function lets you modify input values for solar angle parameters inside input_data_default.csv contains.
+}
+\examples{
+input_data_angles(tts = 35)
 }

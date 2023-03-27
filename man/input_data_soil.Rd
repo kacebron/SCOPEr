@@ -5,7 +5,6 @@
 \title{Modifies module for soil properties within input_data_default.csv}
 \usage{
 input_data_soil(
-  path = "../SCOPE/input/input_data_default.csv",
   spectrum = 1,
   rss = 500,
   rs_thermal = 0.06,
@@ -19,8 +18,6 @@ input_data_soil(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{spectrum}{spectrum number (column in the database soil_file)}
 
 \item{rss}{soil resistance for evaporation from the pore space (s m-1)}
@@ -40,6 +37,8 @@ input_data_soil(
 \item{BSMlat}{BSM model parameter 'lat'}
 
 \item{BSMlon}{BSM model parameter 'long'}
+
+\item{path}{filepath of the filenames.csv}
 }
 \value{
 Default values are given based on default SCOPE values in github

@@ -5,7 +5,6 @@
 \title{Modify filenames.csv}
 \usage{
 set_filenames(
-  path,
   simulation_name,
   dataset_dir,
   meteo_ec_csv,
@@ -42,8 +41,6 @@ set_filenames(
 )
 }
 \arguments{
-\item{path}{filepath of the filenames.csv}
-
 \item{simulation_name}{Lets you change the simulation name.}
 
 \item{dataset_dir}{Lets you specify the directory of the dataset containing the input files for time series simulations}
@@ -107,6 +104,8 @@ set_filenames(
 \item{Vcmax25}{maximum carboxylation capacity (at optimum temperature of 25C, former Vcmo) (umol m-2 s-1)}
 
 \item{BallBerrySlope}{slope of Ball-Berry stomatal conductance model (former m)}
+
+\item{path}{filepath of the filenames.csv}
 
 \item{Car}{Carotenoid content. Usually 25\% of Cab if options.Cca_function_of_Cab (ug cm-2)}
 }
