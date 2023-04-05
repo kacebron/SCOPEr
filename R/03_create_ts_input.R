@@ -32,7 +32,7 @@ create_ts_input <- function(start_time, end_time, span = "30 min",
   bci_ec_flux <- readRDS(file="./inst/extdata/ec_data/bci_ec_flux.Rds")
 
   if (is.null(par_variable)) {
-    par_variable <- bci_ec_flux[(bci_ec_flux$date >= start_time &                                   bci_ec_flux$date <= end_time &                                   !is.na(bci_ec_flux$date)),                                 par_variable_EC_names]
+    par_variable <- bci_ec_flux[(bci_ec_flux$date >= start_time & bci_ec_flux$date <= end_time &                                   !is.na(bci_ec_flux$date)), par_variable_EC_names]
     colnames(par_variable) <- par_variable_SCOPE_names
   }
 
