@@ -17,7 +17,7 @@ input_data_ts <- function(startDOY = 20060618,
                           LON = 5.55,
                           timezn = 1
 ){
-  path <- file.choose()
+  path <- "./inst/extdata/input_data_default.csv"
   input_SCOPE <- readr::read_file(path)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=startDOY,).+" = startDOY,

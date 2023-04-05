@@ -28,7 +28,7 @@ input_data_aero <- function(zo = 0.25,
                             rbs = 10,
                             rwc = 0
 ){
-  path <- file.choose()
+  path <- "./inst/extdata/input_data_default.csv"
   input_SCOPE <- readr::read_file(path)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=zo,).+" = zo,

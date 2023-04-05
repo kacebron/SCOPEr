@@ -27,7 +27,7 @@ input_data_soil <- function(spectrum = 1,
                             BSMlat = 25,
                             BSMlon = 45
                                 ){
-  path <- file.choose()
+  path <- "./inst/extdata/input_data_default.csv"
   input_SCOPE <- readr::read_file(path)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=spectrum,).+" = spectrum,

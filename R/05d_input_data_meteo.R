@@ -25,14 +25,14 @@ input_data_meteo <- function(   z = 5,
                                 Ca = 410,
                                 Oa = 209
 ){
-  path <- file.choose()
+  path <- "./inst/extdata/input_data_default.csv"
   input_SCOPE <- readr::read_file(path)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=z,).+" = z,
                                                 "(?<=Rin,).+" = Rin,
                                                 "(?<=Ta,).+" = Ta,
                                                 "(?<=Rli,).+" = Rli,
-                                                "(?<=p,).+" = p,
+                                                "(?<=\\np,).+" = p,
                                                 "(?<=ea,).+" = ea,
                                                 "(?<=u,).+" = u,
                                                 "(?<=Ca,).+" = Ca,

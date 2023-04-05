@@ -27,7 +27,7 @@ input_data_PROSPECT <- function(Cab = 40,
                                 N = 1.5,
                                 rho_thermal = 0.01,
                                 tau_thermal = 0.01){
-  path <- file.choose()
+  path <- "./inst/extdata/input_data_default.csv"
   input_SCOPE <- readr::read_file(path)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=Cab,).+" = Cab,

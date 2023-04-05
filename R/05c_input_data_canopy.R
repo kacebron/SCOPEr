@@ -22,7 +22,7 @@ input_data_canopy <- function(LAI = 3,
                               Cv = 1,
                               crowndiameter = 1
                               ){
-  path <- file.choose()
+  path <- "./inst/extdata/input_data_default.csv"
   input_SCOPE <- readr::read_file(path)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=LAI,).+" = LAI,

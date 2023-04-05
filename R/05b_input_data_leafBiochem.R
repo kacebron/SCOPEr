@@ -36,7 +36,7 @@ input_data_leafBiochem <- function(Vcmax25 = 60,
                                 stressfactor = 1,
                                 fqe = 0.01
                                 ){
-  path <- file.choose()
+  path <- "./inst/extdata/input_data_default.csv"
   input_SCOPE <- readr::read_file(path)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=Vcmax25,).+" = Vcmax25,
@@ -49,7 +49,7 @@ input_data_leafBiochem <- function(Vcmax25 = 60,
                                                 "(?<=Knalpha,).+" = Knalpha,
                                                 "(?<=Knbeta,).+" = Knbeta,
                                                 "(?<=Tyear,).+" = Tyear,
-                                                "(?<=beta,).+" = beta,
+                                                "(?<=\\nbeta,).+" = beta,
                                                 "(?<=kNPQs,).+" = kNPQs,
                                                 "(?<=qLs,).+" = qLs,
                                                 "(?<=stressfactor,).+" = stressfactor,
