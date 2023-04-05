@@ -57,14 +57,10 @@ set_options(
 
 \item{save_spectral}{(For User's Comfort) Save files with full spectrum. May reach huge sizes in long time-series. Switch in create_output_files_binary().}
 
-\item{path}{Filepath of the directory where setoptions.csv is stored.}
-
 \item{Fluorescence_model}{Switch in ebal().}
 }
 \value{
 \strong{MAIN}
-
-\strong{path} By default, path value is "../../SCOPE/input/setoptions.csv" which should redirect you to your parent directory. If not, then copy-paste the location of setoptions.csv within the open-close quotations.
 
 \strong{verify} Default value is TRUE which means the run will compare output to the verification dataset to test the integrity of your SCOPE copy. FALSE will switch off the verification mode. Note: You would need to switch off the verification mode if you want to do actual simulations.
 
@@ -103,5 +99,6 @@ set_options(
 \strong{save_spectral} Default value is TRUE which will save, FALSE it will not save.
 }
 \description{
-This function helps you modify setoptions.csv
+This function helps you modify setoptions.csv. It reads in a CSV file of options for SCOPE, modifies the values of those options based on the input parameters, and writes the updated options back to the CSV file. The function takes several parameters with default values, primarily \code{verify} and \code{simulation}, which control aspects of the SCOPE simulation. This function is intended to make it easy to customize the SCOPE simulation options without modifying the underlying MATLAB code directly.
+For User's Comfort, run this code with arguments verify = FALSE
 }

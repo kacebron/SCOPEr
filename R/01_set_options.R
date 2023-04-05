@@ -1,8 +1,8 @@
 #' Modify setoptions.csv
 #'
-#' This function helps you modify setoptions.csv
+#' This function helps you modify setoptions.csv. It reads in a CSV file of options for SCOPE, modifies the values of those options based on the input parameters, and writes the updated options back to the CSV file. The function takes several parameters with default values, primarily `verify` and `simulation`, which control aspects of the SCOPE simulation. This function is intended to make it easy to customize the SCOPE simulation options without modifying the underlying MATLAB code directly.
+#' For User's Comfort, run this code with arguments verify = FALSE
 #'
-#' @param path Filepath of the directory where setoptions.csv is stored.
 #' @param verify (For User's Comfort) Lets you switch verification mode.
 #' @param simulation Defines rules for input reading.
 #' @param lite Switch in RTMo().
@@ -22,7 +22,6 @@
 #' @param save_spectral (For User's Comfort) Save files with full spectrum. May reach huge sizes in long time-series. Switch in create_output_files_binary().
 #'
 #' @return **MAIN**
-#' @return **path** By default, path value is "../../SCOPE/input/setoptions.csv" which should redirect you to your parent directory. If not, then copy-paste the location of setoptions.csv within the open-close quotations.
 #' @return **verify** Default value is TRUE which means the run will compare output to the verification dataset to test the integrity of your SCOPE copy. FALSE will switch off the verification mode. Note: You would need to switch off the verification mode if you want to do actual simulations.
 #' @return **simulation** Default value is 0 which is equal to individual runs. Other options can be 1 (time series runs) or 2 (for look-up table).
 #' @return **OTHERS**
