@@ -36,5 +36,5 @@ run_scope <- function(){
                   wait = TRUE,
                   single_thread = FALSE)
   # This code should remove the file path of SCOPE when you terminate your session
-  on.exit(rm("SCOPE_PATH", envir = .GlobalEnv))
+  on.exit(rm("SCOPE_path", envir = .GlobalEnv))
 }

@@ -24,7 +24,7 @@ create_ts_input(
 
 \item{span}{character string that can be read by seq.POSIXct e.g. "1 hour" or "30 min" --  Should be divisible into the difference between start.time and end.time.}
 
-\item{par_constant_type}{1=aero; 2=angles; 3=biochem; 4=canopy; 5=meteo; 6=PROSPECT; 7=soil; 8=timeseries}
+\item{par_constant_type}{replace the _type with any of the following: aero, angles, biochem, canopy, meteo, PROSPECT, soil, timeseries}
 
 \item{par_variable}{T x V matrix -- SCOPE input parameter values change over some or all time steps. T is number of time steps and V is number of varying variables.}
 

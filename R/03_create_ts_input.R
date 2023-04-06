@@ -13,7 +13,7 @@
 #' @param par_variable T x V matrix -- SCOPE input parameter values change over some or all time steps. T is number of time steps and V is number of varying variables.
 #' @param dir_name character string -- name of directory to save the input file.
 #' @param filename the base.name of the input file to be saved (omitting the '.csv').
-#' @param par_constant_type 1=aero; 2=angles; 3=biochem; 4=canopy; 5=meteo; 6=PROSPECT; 7=soil; 8=timeseries
+#' @param par_constant_type replace the _type with any of the following: aero, angles, biochem, canopy, meteo, PROSPECT, soil, timeseries
 #' @export
 #'
 
@@ -40,6 +40,8 @@ create_ts_input <- function(start_time, end_time, span = "30 min",
   et <- as.POSIXct(strftime(end_time, format = "%Y-%m-%d %H:%M"))
   t_seq <- seq(st, et, by = span)
   t <- strftime(t_seq, format = "%Y%m%d%H%M")
+  dir_name <<- dir_name # this is needed for migrating files to SCOPE folder and set_filenames
+  filename <<- filename # this is needed later for set_filenames
 
   par_constant_mat <- matrix(par_constant, nrow = length(t),
                              ncol = length(par_constant), byrow = TRUE)
