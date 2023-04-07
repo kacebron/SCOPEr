@@ -83,4 +83,17 @@ set_options <- function(verify = TRUE,
                                    ))
   utils::write.table(set_options, file = path, sep=",",
               col.names = FALSE, row.names = FALSE, quote = FALSE)
+
+  # Prompt users to enter start & end time (and span) if its a time series experiment
+  if (simulation == 1) {
+    print("You set to simulate time-series runs")
+    start_time <<- as.POSIXct(strftime(readline("Enter start time (YYYY-MM-DD HH:MM): "), format = "%Y-%m-%d %H:%M"))
+    end_time <<- as.POSIXct(strftime(readline("Enter end time (YYYY-MM-DD HH:MM): "), format = "%Y-%m-%d %H:%M"))
+    span <<- readline("Enter span (ex. 1 hour or 30 min): ")
+  } else if (simulation == 2) {
+    print("You set to simulate look-up table")
+  } else {
+    # No response if simulation is not 1 or 2
+    print("You set to simulate individual run")
+  }
 }
