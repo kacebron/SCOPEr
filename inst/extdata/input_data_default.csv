@@ -17,7 +17,7 @@ BallBerrySlope,8
 BallBerry0,0.01
 Type,0
 kV,0.64
-Rdparam,0
+Rdparam,0.015
 Kn0,2.48
 Knalpha,2.83
 Knbeta,0.114
@@ -79,9 +79,9 @@ rwc,0
 timeseries,
 startDOY,20060618
 endDOY,20300101
-LAT,-2.85
-LON,-54.97
-timezn,-3
+LAT,51.55
+LON,5.55
+timezn,1
 ,
 Angles,
 tts,30
