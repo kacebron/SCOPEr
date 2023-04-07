@@ -61,7 +61,7 @@ migrate_file <- function() {
         difftime(current_time, file_mod_time_filenames, units = "secs") < time_threshold &&
         difftime(current_time, file_mod_time_input_data_default, units = "secs") < time_threshold &&
         difftime(current_time, file_mod_time_dataset, units = "secs") < time_threshold) {
-      message("All files have been successfully copied.")
+      message("All files have been successfully migrated to SCOPE folder.")
     } else {
       warning("Files has not been updated.")
     }
