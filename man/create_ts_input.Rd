@@ -9,9 +9,7 @@ create_ts_input(
   end_time,
   span = "30 min",
   run_nightTime = FALSE,
-  par_constant_type,
-  par_variable_EC_names = c("Rs", "tair", "RH"),
-  par_variable_SCOPE_names = c("Rin", "Ta", "RH"),
+  par_constant = NULL,
   par_variable = NULL,
   dir_name = ".",
   filename = "input"
@@ -24,7 +22,7 @@ create_ts_input(
 
 \item{span}{character string that can be read by seq.POSIXct e.g. "1 hour" or "30 min" --  Should be divisible into the difference between start.time and end.time.}
 
-\item{par_constant_type}{replace the _type with any of the following: aero, angles, biochem, canopy, meteo, PROSPECT, soil, timeseries}
+\item{par_constant}{a numeric vector of length C -- SCOPE input parameter values that will be repeated for every time step. C is the number of constant variables.}
 
 \item{par_variable}{T x V matrix -- SCOPE input parameter values change over some or all time steps. T is number of time steps and V is number of varying variables.}
 
@@ -34,7 +32,7 @@ create_ts_input(
 
 \item{run_nighttime}{logical determining whether SCOPE should run simulations where Rin >= 0 (i.e., at night).}
 
-\item{par_constant}{a numeric vector of length C -- SCOPE input parameter values that will be repeated for every time step. C is the number of constant variables.}
+\item{par_constant_type}{replace the _type with any of the following: aero, angles, biochem, canopy, meteo, PROSPECT, soil, timeseries}
 }
 \description{
 This function uses start and end times, a grain of resolution, and constant

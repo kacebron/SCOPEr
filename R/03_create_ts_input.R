@@ -18,28 +18,15 @@
 #'
 
 create_ts_input <- function(start_time, end_time, span = "30 min",
-                          run_nightTime = FALSE, par_constant_type,
-                          par_variable_EC_names = c("Rs", "tair", "RH"),
-                          par_variable_SCOPE_names = c("Rin", "Ta", "RH"),
+                          run_nightTime = FALSE, par_constant = NULL,
                           par_variable = NULL, dir_name = ".",
                           filename = "input") {
-  if (is.null(par_constant_type)) {
-    stop("par_constant_type not defined")
-  }
-
-  par_constant <- readRDS(file = sprintf("./inst/extdata/par_constant/%s.RDs", par_constant_type))
-
-  bci_ec_flux <- readRDS(file="./inst/extdata/ec_data/bci_ec_flux.Rds")
-
-  if (is.null(par_variable)) {
-    par_variable <- bci_ec_flux[(bci_ec_flux$date >= start_time & bci_ec_flux$date <= end_time &                                   !is.na(bci_ec_flux$date)), par_variable_EC_names]
-    colnames(par_variable) <- par_variable_SCOPE_names
-  }
 
   st <- as.POSIXct(strftime(start_time, format = "%Y-%m-%d %H:%M"))
   et <- as.POSIXct(strftime(end_time, format = "%Y-%m-%d %H:%M"))
   t_seq <- seq(st, et, by = span)
   t <- strftime(t_seq, format = "%Y%m%d%H%M")
+
   dir_name <<- dir_name # this is needed for migrating files to SCOPE folder and set_filenames
   filename <<- filename # this is needed later for set_filenames
 
@@ -47,12 +34,12 @@ create_ts_input <- function(start_time, end_time, span = "30 min",
                              ncol = length(par_constant), byrow = TRUE)
   input_df <- cbind(t, par_constant_mat, par_variable)
   colnames(input_df) <- c("t", names(par_constant), names(par_variable))
+  input_df <- input_df[,-which(names(input_df) == "Date")]
 
   if(run_nightTime == FALSE) {
     input_df <- input_df[which(input_df$Rin > 0), ]
   }
   dir.create(sprintf("./inst/extdata/dataset %s", dir_name))
 
-  utils::write.csv(as.data.frame(input_df), sprintf("./inst/extdata/dataset %s/%s.csv", dir_name, filename),
-            row.names = FALSE, quote = FALSE)
+  utils::write.csv(as.data.frame(input_df), sprintf("./inst/extdata/dataset %s/%s.csv", dir_name, filename), row.names = FALSE, quote = FALSE)
 }
