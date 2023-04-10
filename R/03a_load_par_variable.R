@@ -6,7 +6,7 @@
 load_par_variable <- function() {
 
   # Prompt user to choose CSV file
-  message("Locate the meteorological data from Eddy Covariance")
+  message("Locate the meteorological data from EC station")
   file_path <- file.choose()
 
   # Check file extension
@@ -38,7 +38,7 @@ load_par_variable <- function() {
   data_trimmed <- data2[data2$Date >= start_time & data2$Date <= end_time, ]
 
   # Remove rows with NA values
-  df_clean <- na.omit(data_trimmed)
+  data_trimmed <- na.omit(data_trimmed)
 
-  return(df_clean)
+  return(data_trimmed)
 }

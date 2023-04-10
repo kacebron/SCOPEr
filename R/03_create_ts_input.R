@@ -22,13 +22,15 @@ create_ts_input <- function(start_time, end_time, span = "30 min",
                           par_variable = NULL, dir_name = ".",
                           filename = "input") {
 
-  st <- as.POSIXct(strftime(start_time, format = "%Y-%m-%d %H:%M"))
-  et <- as.POSIXct(strftime(end_time, format = "%Y-%m-%d %H:%M"))
-  t_seq <- seq(st, et, by = span)
+  #st <- as.POSIXct(strftime(start_time, format = "%Y-%m-%d %H:%M"))
+  #et <- as.POSIXct(strftime(end_time, format = "%Y-%m-%d %H:%M"))
+  t_seq <- seq(start_time, end_time, by = span)
   t <- strftime(t_seq, format = "%Y%m%d%H%M")
 
   dir_name <<- dir_name # this is needed for migrating files to SCOPE folder and set_filenames
   filename <<- filename # this is needed later for set_filenames
+
+  # Matching t and date from par_variable (useful if there are NAs and finer screen of data)
 
   par_constant_mat <- matrix(par_constant, nrow = length(t),
                              ncol = length(par_constant), byrow = TRUE)

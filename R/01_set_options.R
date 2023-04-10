@@ -97,3 +97,30 @@ set_options <- function(verify = TRUE,
     print("You set to simulate individual run")
   }
 }
+
+# span function that converts any units of time into minutes. This is needed to average the meteo data based on the resolution we need.
+
+convert_to_minutes <- function(span) {
+  # span: character string containing time and unit (e.g. "3 hours")
+
+  # use regular expressions to extract numeric value and unit
+  time <- as.numeric(gsub("[^[:digit:].]", "", span))
+  unit <- gsub("[[:digit:]. ]", "", span)
+
+  # convert time to minutes based on unit
+  if (unit == "hour") {
+    minutes <- time * 60
+  } else if (unit == "day") {
+    minutes <- time * 24 * 60
+  } else if (unit == "week") {
+    minutes <- time * 7 * 24 * 60
+  } else if (unit == "month") {
+    minutes <- time * 30.44 * 24 * 60
+  } else if (unit == "year") {
+    minutes <- time * 365.25 * 24 * 60
+  } else {
+    stop("Invalid unit. Please enter 'hour', 'day', 'week', 'month', or 'year'.")
+  }
+
+  return(minutes)
+}
