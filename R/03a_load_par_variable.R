@@ -13,12 +13,15 @@ load_par_variable <- function() {
   file_ext <- tools::file_ext(file_path)
 
   # Use if-else statement to read file
-  if(file_ext == "csv") {
+  if (file_ext == "csv" | file_ext == "txt") {
     # Read CSV file
-    data <- read.csv(file_path)
-  } else {
+    data <- read.csv(file_path, sep=",")
+  } else if (file_ext == "Rds") {
     # Read RDS file
     data <- readRDS(file_path)
+  } else {
+    # Unknown file type
+    stop("Unsupported file type")
   }
 
   # Notice
