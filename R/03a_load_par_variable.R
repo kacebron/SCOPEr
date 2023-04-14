@@ -44,5 +44,8 @@ load_par_variable <- function() {
   # Remove rows with NA values
   data_trimmed <- na.omit(data_trimmed)
 
+  # Remove rows with invalid dates
+  data_trimmed <- data_trimmed[grepl("\\d{4}-\\d{2}-\\d{2}", data_trimmed$Date),]
+
   return(data_trimmed)
 }
