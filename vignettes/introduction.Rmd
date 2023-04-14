@@ -1,5 +1,5 @@
 ---
-title: "introduction"
+title: "Using SCOPEr to run SCOPE simulations in R language"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{introduction}
@@ -18,30 +18,39 @@ knitr::opts_chunk$set(
 library(SCOPEr1)
 ```
 
-This package runs SCOPE in R language. 
+This package runs SCOPE in R language.
+NOTE: It is important that you have done the following prior to using this library:
+1. Download your own version of SCOPE from Christiaan van der Tol's github account (https://github.com/Christiaanvandertol/SCOPE.git)
+2. Have installed Matlab in your local computer and have a valid license.
 
 Sample workflow is below:
 
-Step 1: install SCOPEr1 package from github
+Step 1: Install SCOPEr1 package from github (This needs some tweaking)
 ```{r}
 devtools::install_github("kacebron/SCOPEr")
 ```
-Step 2: initiate run_scope to run a test verifying integrity of copy of SCOPE model
+
+Step 2: Initiate run_scope to run a test verifying integrity of copy of SCOPE model. This will initially prompt you to manually choose the location of SCOPE.m file. Once located, the filepath is saved in your global environment and is only deleted once the session is ended.
 ```{r}
-run_scope("../../SCOPE/SCOPE.m")
+run_scope()
 ```
-Step 3: modify setoptions.csv using set_options()
+
+Step 3: Modify setoptions.csv using set_options()
+In this code, you can turn off verification mode using argument verify = FALSE.
+When you use simulation = 1, this will set SCOPE to run time series simulations. This will automatically prompt you to encode the start_time and end_time of the simulation (in %YYYY-%MM-%DD %HH:%MM format) as well as the span (ex. 30 min, 1 hour, 1 day, 1 week, 1 month, 1 year).
+NOTE: The start_time, end_time and span are saved in the global environment which will be later used in creating variable parameters for time series input.
 ``` {r}
-set_options(path = "../../SCOPE/input/setoptions.csv", verify = FALSE, simulation = 1)
+set_options(verify=FALSE, simulation=1)
 ```
-Step 4: modify set_parameters_file.csv using set_paramFile()
+
+Step 4: Modify set_parameters_file.csv using set_paramFile()
 ``` {r}
-set_paramFile(input = "input_data_default.csv")
+set_paramFile(input="input_data_default.csv")
 ```
-Step 5: create an input directory (only for time series simulations)
+
+Step 5: Create a variable parameter for time series input and save it as par_variable object. 
 ```{r}
-dir.name <- c("example_name")
-dir.create(sprintf("../../SCOPE/input/dataset %s", dir.name))
+par_variable <- load_par_variable()
 ```
 Step 6: create an input filename
 ```{r}
