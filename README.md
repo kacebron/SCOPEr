@@ -1,2 +1,2 @@
-# SCOPEr1
+# SCOPEr
 Runs SCOPE in R.
