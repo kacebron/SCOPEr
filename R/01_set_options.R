@@ -59,8 +59,8 @@ set_options <- function(verify = TRUE,
                         MoninObukhov = TRUE,
                         save_spectral = TRUE
                         ){
-  data_file <- system.file("extdata", "setoptions.csv", package = "SCOPEr")
-  set_options <- readr::read_file(data_file)
+  setoptions_csv <- system.file("extdata", "setoptions.csv", package = "SCOPEr")
+  set_options <- readr::read_file(setoptions_csv)
   set_options <- stringr::str_replace_all(set_options,
                                  c("(\\n)$" = "",
                                    ".(?=,verify)" = ifelse(verify == TRUE, "1", "0"),
@@ -81,7 +81,7 @@ set_options <- function(verify = TRUE,
                                    ".(?=,MoninObukhov)" = ifelse(MoninObukhov == TRUE, "1", "0"),
                                    ".(?=,save_spectral)" = ifelse(save_spectral == TRUE, "1", "0")
                                    ))
-  utils::write.table(set_options, file = data_file, sep=",",
+  utils::write.table(set_options, file = setoptions_csv, sep=",",
               col.names = FALSE, row.names = FALSE, quote = FALSE)
 
   # Prompt users to enter start & end time (and span) if its a time series experiment
@@ -89,7 +89,7 @@ set_options <- function(verify = TRUE,
     print("You set to simulate time-series runs")
     start_time <<- as.POSIXct(strftime(readline("Enter start time (YYYY-MM-DD HH:MM): "), format = "%Y-%m-%d %H:%M"))
     end_time <<- as.POSIXct(strftime(readline("Enter end time (YYYY-MM-DD HH:MM): "), format = "%Y-%m-%d %H:%M"))
-    span <<- readline("Enter span (ex. 1 hour or 30 min): ")
+    span <<- readline("Enter span (%d unit): ")
   } else if (simulation == 2) {
     print("You set to simulate look-up table")
   } else {

@@ -74,8 +74,8 @@ set_filenames <- function(simulation_name,
                           Vcmax25 = TRUE,
                           BallBerrySlope = TRUE)
                         {
-  path <- "./inst/extdata/filenames.csv"
-  filenames <- readr::read_file(path)
+  filenames_csv <- system.file("extdata", "filenames.csv", package="SCOPEr")
+  filenames <- readr::read_file(filenames_csv)
   filenames <- stringr::str_replace_all(filenames,
                                c("(\\n)$" = "",
                                  "(?<=Simulation_Name,).+" = simulation_name,
@@ -112,6 +112,6 @@ set_filenames <- function(simulation_name,
                                  "(?<=Vcmax25,)((Vcmax25){1,}|)" = ifelse(Vcmax25 == TRUE, "Vcmax25", ""),
                                  "(?<=BallBerrySlope,)((BallBerrySlope){1,}|)" = ifelse(BallBerrySlope == TRUE, "BallBerrySlope", "")
                                ))
-  utils::write.table(filenames, file=path, sep=",",
+  utils::write.table(filenames, file=filenames_csv, sep=",",
               col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

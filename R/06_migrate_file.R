@@ -1,30 +1,34 @@
 #' This function migrates all files to the SCOPE folder
 #'
 #' The migrate_file() function is a utility function that copies files from the SCOPEr library to your local copy of SCOPE. The function takes no arguments, and the file paths are hard-coded within the function. The files to be copied include a set of CSV files and a dataset folder. The function checks whether the files have been successfully copied by comparing their modification time to the current time, and issues appropriate messages depending on the result of the check. Run this function before running the run_scope()
-#'
+#' @export
 migrate_file <- function() {
+
+  # Get system.file path
+  sys_path <- system.file(package="SCOPEr")
+
   # Set the path to the set_parameter_filenames.csv
-  orig_set_paramFile <- file.path("./inst/extdata/", "set_parameter_filenames.csv")
+  orig_set_paramFile <- file.path(sprintf("%s/extdata/", sys_path), "set_parameter_filenames.csv")
   new_set_paramFile <- file.path("../../SCOPE", "set_parameter_filenames.csv")
 
   # Set the path to the setoptions.csv
-  orig_setoptions <- file.path("./inst/extdata/", "setoptions.csv")
+  orig_setoptions <- file.path(sprintf("%s/extdata/", sys_path), "setoptions.csv")
   new_setoptions <- file.path("../../SCOPE/input", "setoptions.csv")
 
   # Set the path to the filenames.csv
-  orig_filenames <- file.path("./inst/extdata/", "filenames.csv")
+  orig_filenames <- file.path(sprintf("%s/extdata/", sys_path), "filenames.csv")
   new_filenames <- file.path("../../SCOPE/input", "filenames.csv")
 
   # Set the path to the input_data_default.csv
-  orig_input_data_default <- file.path("./inst/extdata/", "input_data_default.csv")
+  orig_input_data_default <- file.path(sprintf("%s/extdata/", sys_path), "input_data_default.csv")
   new_input_data_default <- file.path("../../SCOPE/input", "input_data_default.csv")
 
   # Set the path to the input_data_latin_hypercube.csv
-  orig_input_data_latin_hypercube <- file.path("./inst/extdata/", "input_data_latin_hypercube.csv")
+  orig_input_data_latin_hypercube <- file.path(sprintf("%s/extdata/", sys_path), "input_data_latin_hypercube.csv")
   new_input_data_latin_hypercube <- file.path("../../SCOPE/input", "input_data_latin_hypercube.csv")
 
   # Set the path to the dataset folder ts
-  orig_dataset <- file.path(sprintf("./inst/extdata/dataset %s", dir_name))
+  orig_dataset <- file.path(sprintf(".%s/extdata/dataset %s", sys_path, dir_name))
   new_dataset <- file.path("../../SCOPE/input")
 
   # Copy the file to the new folder

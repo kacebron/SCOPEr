@@ -8,10 +8,10 @@
 #' @export
 #'
 set_paramFile <- function(input = "input_data_latin_hypercube.csv"){
-  path <- "./inst/extdata/set_parameter_filenames.csv"
-  set_param <- readr::read_file(path)
+  set_paramfile_csv <- system.file("extdata", "set_parameter_filenames.csv", package = "SCOPEr")
+  set_param <- readr::read_file(set_paramfile_csv)
   set_param <- stringr::str_replace(set_param, stringr::str_split(set_param, ", ")[[1]][3],
                            input)
-  utils::write.table(set_param, file=path,
+  utils::write.table(set_param, file=set_paramfile_csv,
               sep = ",", col.names = FALSE, row.names = FALSE, quote = FALSE)
 }

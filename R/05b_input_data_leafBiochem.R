@@ -36,8 +36,8 @@ input_data_leafBiochem <- function(Vcmax25 = 60,
                                 stressfactor = 1,
                                 fqe = 0.01
                                 ){
-  path <- "./inst/extdata/input_data_default.csv"
-  input_SCOPE <- readr::read_file(path)
+  input_data_default_csv <- system.file("extdata", "input_data_default.csv", package="SCOPEr")
+  input_SCOPE <- readr::read_file(input_data_default_csv)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=Vcmax25,).+" = Vcmax25,
                                                 "(?<=BallBerrySlope,).+" = BallBerrySlope,
@@ -56,6 +56,6 @@ input_data_leafBiochem <- function(Vcmax25 = 60,
                                                 "(?<=fqe,).+" = fqe
                                                 )
                                  )
-  utils::write.table(input_SCOPE, file = path,
+  utils::write.table(input_SCOPE, file = input_data_default_csv,
               sep=",", col.names=FALSE, row.names = FALSE, quote=FALSE, na="")
 }

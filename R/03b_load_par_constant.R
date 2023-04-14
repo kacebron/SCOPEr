@@ -1,6 +1,7 @@
 #' Loads constant parameters for time series input
 #'
 #' The load_par_constant() function is designed to prompt the user to select a file containing constant parameters the timeseries input table. The function then reads the data from the selected file using the readRDS() function and returns the data as a variable.
+#' @export
 #'
 load_par_constant <- function() {
 

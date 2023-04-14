@@ -41,7 +41,11 @@ create_ts_input <- function(start_time, end_time, span = "30 min",
   if(run_nightTime == FALSE) {
     input_df <- input_df[which(input_df$Rin > 0), ]
   }
-  dir.create(sprintf("./inst/extdata/dataset %s", dir_name))
 
-  utils::write.csv(as.data.frame(input_df), sprintf("./inst/extdata/dataset %s/%s.csv", dir_name, filename), row.names = FALSE, quote = FALSE)
+  # Create path from system file
+  path <- system.file(package="SCOPEr")
+
+  dir.create(sprintf("%s/extdata/dataset %s", path, dir_name))
+
+  utils::write.csv(as.data.frame(input_df), sprintf("%s/extdata/dataset %s/%s.csv", path, dir_name, filename), row.names = FALSE, quote = FALSE)
 }
