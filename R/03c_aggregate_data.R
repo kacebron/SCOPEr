@@ -34,8 +34,9 @@ aggregate_data <- function(data_trimmed, span) {
     agg_data$group_day <- NULL
   } else if (span_in_minutes <= 43200) {
     # aggregate data every week
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_week=as.yearqtr(data_trimmed$Date, "%Y-%m-%d") + as.integer(format(data_trimmed$Date, "%W"))/100), mean)
-    agg_data$Date <- as.Date(paste0(substr(as.character(agg_data$group_week),1,7), "-01"))
+    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_week=zoo::as.yearqtr(data_trimmed$Date, "%Y-%m-%d") +
+                                                               as.integer(format(data_trimmed$Date, "%W"))/100), mean)
+    agg_data$Date <- as.Date(paste(substr(as.character(agg_data$group_week), 1, 4), "-", substr(as.character(agg_data$group_week), 6, 6), "-01"), "%Y-%m-%d")
     agg_data$group_week <- NULL
   } else if (span_in_minutes <= 525600) {
     # aggregate data every month
