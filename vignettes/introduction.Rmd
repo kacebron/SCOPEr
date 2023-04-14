@@ -14,10 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(SCOPEr1)
-```
-
 This package runs SCOPE in R language.
 NOTE: It is important that you have done the following prior to using this library:
 1. Download your own version of SCOPE from Christiaan van der Tol's github account (https://github.com/Christiaanvandertol/SCOPE.git)
@@ -25,17 +21,22 @@ NOTE: It is important that you have done the following prior to using this libra
 
 Sample workflow is below:
 
-Step 1: Install SCOPEr1 package from github (This needs some tweaking)
+Step 1: Install SCOPEr package from github (This needs some tweaking)
 ```{r}
 devtools::install_github("kacebron/SCOPEr")
 ```
 
-Step 2: Initiate run_scope to run a test verifying integrity of copy of SCOPE model. This will initially prompt you to manually choose the location of SCOPE.m file. Once located, the filepath is saved in your global environment and is only deleted once the session is ended.
+Step 2: Load SCOPEr library
+```{r setup}
+library(SCOPEr)
+```
+
+Step 3: Initiate run_scope to run a test verifying integrity of copy of SCOPE model. This will initially prompt you to manually choose the location of SCOPE.m file. Once located, the filepath is saved in your global environment and is only deleted once the session is ended.
 ```{r}
 run_scope()
 ```
 
-Step 3: Modify setoptions.csv using set_options()
+Step 4: Modify setoptions.csv using set_options()
 In this code, you can turn off verification mode using argument verify = FALSE.
 When you use simulation = 1, this will set SCOPE to run time series simulations. This will automatically prompt you to encode the start_time and end_time of the simulation (in %YYYY-%MM-%DD %HH:%MM format) as well as the span (ex. 30 min, 1 hour, 1 day, 1 week, 1 month, 1 year).
 NOTE: The start_time, end_time and span are saved in the global environment which will be later used in creating variable parameters for time series input.
@@ -43,33 +44,34 @@ NOTE: The start_time, end_time and span are saved in the global environment whic
 set_options(verify=FALSE, simulation=1)
 ```
 
-Step 4: Modify set_parameters_file.csv using set_paramFile()
+Step 5: Modify set_parameters_file.csv using set_paramFile()
 ``` {r}
 set_paramFile(input="input_data_default.csv")
 ```
 
-Step 5: Create a variable parameter for time series input and save it as par_variable object. 
+Step 6: Create a variable parameter for time series input and save it as par_variable object. 
 ```{r}
 par_variable <- load_par_variable()
 ```
-Step 6: create an input filename
+
+Step 7: Aggregate the data based on the span. 
 ```{r}
-input.filename <- "example_input_filename"
+agg_data <- aggregate_data(data_trimmed = par_variable, span = span)
 ```
-Step 7: set input/output names and add/delete column names for certain parameters inside filenames.csv
+Step 8: set input/output names and add/delete column names for certain parameters inside filenames.csv
 ```{r}
 set_filenames(simulation_name = dir.name, 
           dataset_dir = dir.name,
           meteo_ec_csv = input.filename,
           tts = FALSE) # when FALSE, this automatically computes solar zenith angle (tts) from the timezone, latitude and longitude provided inside the input_data_default.csv
 ```
-Step 8: create duration and temporal resolution of time series
+Step 9: create duration and temporal resolution of time series
 ```{r}
 start.time <- as.character("2012-07-03 00:00")
 end.time <- as.character("2017-08-31 23:30")
 span <- "30 mins"
 ```
-Step 9: create constant parameters (this can be linked to some ground truth data)
+Step 10: create constant parameters (this can be linked to some ground truth data)
 ```{r}
 PCA.means <- read.csv("3_output_clean_data/PCA_groupings_mean.csv")
 
