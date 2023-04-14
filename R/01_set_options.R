@@ -59,7 +59,7 @@ set_options <- function(verify = TRUE,
                         MoninObukhov = TRUE,
                         save_spectral = TRUE
                         ){
-  path <- "./inst/extdata/setoptions.csv"
+  path <- "../../inst/extdata/setoptions.csv"
   set_options <- readr::read_file(path)
   set_options <- stringr::str_replace_all(set_options,
                                  c("(\\n)$" = "",
