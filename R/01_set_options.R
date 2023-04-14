@@ -59,8 +59,8 @@ set_options <- function(verify = TRUE,
                         MoninObukhov = TRUE,
                         save_spectral = TRUE
                         ){
-  path <- "../../inst/extdata/setoptions.csv"
-  set_options <- readr::read_file(path)
+  data_file <- system.file("extdata", "setoptions.csv", package = "SCOPEr")
+  set_options <- readr::read_file(data_file)
   set_options <- stringr::str_replace_all(set_options,
                                  c("(\\n)$" = "",
                                    ".(?=,verify)" = ifelse(verify == TRUE, "1", "0"),
