@@ -81,7 +81,7 @@ set_options <- function(verify = TRUE,
                                    ".(?=,MoninObukhov)" = ifelse(MoninObukhov == TRUE, "1", "0"),
                                    ".(?=,save_spectral)" = ifelse(save_spectral == TRUE, "1", "0")
                                    ))
-  utils::write.table(set_options, file = path, sep=",",
+  utils::write.table(set_options, file = data_file, sep=",",
               col.names = FALSE, row.names = FALSE, quote = FALSE)
 
   # Prompt users to enter start & end time (and span) if its a time series experiment
