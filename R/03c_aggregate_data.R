@@ -18,6 +18,9 @@ aggregate_data <- function(data_trimmed, span) {
   # convert span to minutes
   span_in_minutes <- convert_to_minutes(span)
 
+  # convert Date to as.POSIXct (critical for aggregating hourly)
+  data_trimmed$Date <- as.POSIXct(data_trimmed$Date, format="%Y-%m-%d %H:%M:%S")
+
   # determine grouping based on span
   if (span_in_minutes <= 30) {
     # do not aggregate data
@@ -29,39 +32,46 @@ aggregate_data <- function(data_trimmed, span) {
     agg_data$group_hour <- NULL
   } else if (span_in_minutes <= 120) {
     # aggregate data every 2 hours
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_2hour=format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(2*60))*2*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")), mean)
+    data_trimmed$group_2hour <- format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(2*60*60))*2*60*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")
+    agg_data <- aggregate(data_trimmed[,1:4], by=list(group_2hour=data_trimmed$group_2hour), mean)
     agg_data$Date <- as.POSIXct(agg_data$group_2hour, format="%Y-%m-%d %H:%M:%S")
     agg_data$group_2hour <- NULL
   } else if (span_in_minutes <= 180) {
     # aggregate data every 3 hours
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_3hour=format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(3*60))*3*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")), mean)
+    data_trimmed$group_3hour <- format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(3*60*60))*3*60*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")
+    agg_data <- aggregate(data_trimmed[,1:4], by=list(group_3hour=data_trimmed$group_3hour), mean)
     agg_data$Date <- as.POSIXct(agg_data$group_3hour, format="%Y-%m-%d %H:%M:%S")
     agg_data$group_3hour <- NULL
   } else if (span_in_minutes <= 240) {
     # aggregate data every 4 hours
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_4hour=format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(4*60))*4*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")), mean)
+    data_trimmed$group_4hour <- format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(4*60*60))*4*60*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")
+    agg_data <- aggregate(data_trimmed[,1:4], by=list(group_4hour=data_trimmed$group_4hour), mean)
     agg_data$Date <- as.POSIXct(agg_data$group_4hour, format="%Y-%m-%d %H:%M:%S")
     agg_data$group_4hour <- NULL
   } else if (span_in_minutes <= 300) {
     # aggregate data every 5 hours
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_5hour=format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(5*60))*5*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")), mean)
+    data_trimmed$group_5hour <- format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(5*60*60))*5*60*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")
+    agg_data <- aggregate(data_trimmed[,1:4], by=list(group_5hour=data_trimmed$group_5hour), mean)
     agg_data$Date <- as.POSIXct(agg_data$group_5hour, format="%Y-%m-%d %H:%M:%S")
     agg_data$group_5hour <- NULL
   } else if (span_in_minutes <= 360) {
     # aggregate data every 6 hours
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_6hour=format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(6*60))*6*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")), mean)
+    data_trimmed$group_6hour <- format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(6*60*60))*6*60*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")
+    agg_data <- aggregate(data_trimmed[,1:4], by=list(group_6hour=data_trimmed$group_6hour), mean)
     agg_data$Date <- as.POSIXct(agg_data$group_6hour, format="%Y-%m-%d %H:%M:%S")
     agg_data$group_6hour <- NULL
   } else if (span_in_minutes <= 420) {
     # aggregate data every 7 hours
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_7hour=format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(7*60))*7*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")), mean)
+    data_trimmed$group_7hour <- format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(7*60*60))*7*60*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")
+    agg_data <- aggregate(data_trimmed[,1:4], by=list(group_7hour=data_trimmed$group_7hour), mean)
     agg_data$Date <- as.POSIXct(agg_data$group_7hour, format="%Y-%m-%d %H:%M:%S")
     agg_data$group_7hour <- NULL
   } else if (span_in_minutes <= 480) {
     # aggregate data every 8 hours
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_8hour=format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(8*60))*8*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")), mean)
+    data_trimmed$group_8hour <- format(as.POSIXct(floor(as.numeric(data_trimmed$Date)/(8*60*60))*8*60*60, origin="1970-01-01"),"%Y-%m-%d %H:%M:%S")
+    agg_data <- aggregate(data_trimmed[,1:4], by=list(group_8hour=data_trimmed$group_8hour), mean)
     agg_data$Date <- as.POSIXct(agg_data$group_8hour, format="%Y-%m-%d %H:%M:%S")
-    agg_data$group_5hour <- NULL
+    agg_data$group_8hour <- NULL
   } else if (span_in_minutes <= 1440) {
     # aggregate data every day
     agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_day=format(data_trimmed$Date, "%Y-%m-%d")), mean)
@@ -69,8 +79,7 @@ aggregate_data <- function(data_trimmed, span) {
     agg_data$group_day <- NULL
   } else if (span_in_minutes <= 43200) {
     # aggregate data every week
-    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_week=zoo::as.yearqtr(data_trimmed$Date, "%Y-%m-%d") +
-                                                               as.integer(format(data_trimmed$Date, "%W"))/100), mean)
+    agg_data <- stats::aggregate(data_trimmed[,1:4], by=list(group_week=zoo::as.yearqtr(data_trimmed$Date, "%Y-%m-%d") + as.integer(format(data_trimmed$Date, "%W"))/100), mean)
     agg_data$Date <- as.Date(paste(substr(as.character(agg_data$group_week), 1, 4), "-", substr(as.character(agg_data$group_week), 6, 6), "-01"), "%Y-%m-%d")
     agg_data$group_week <- NULL
   } else if (span_in_minutes <= 525600) {

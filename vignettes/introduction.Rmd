@@ -58,6 +58,7 @@ Step 7: Aggregate the data based on the span.
 ```{r}
 agg_data <- aggregate_data(data_trimmed = par_variable, span = span)
 ```
+
 Step 8: set input/output names and add/delete column names for certain parameters inside filenames.csv
 ```{r}
 set_filenames(simulation_name = dir.name, 
