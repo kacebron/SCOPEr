@@ -20,6 +20,9 @@ load_par_variable <- function() {
   } else if (file_ext == "Rds") {
     # Read RDS file
     data <- readRDS(file_path)
+  } else if (file_ext == "RDa") {
+    # Read RDa file
+    load(file_path)
   } else {
     # Unknown file type
     stop("Unsupported file type")
