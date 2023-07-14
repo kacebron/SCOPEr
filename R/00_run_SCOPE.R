@@ -11,14 +11,15 @@
 #' @export
 
 
-run_scope <- function(){
+run_scope <- function() {
 
   # Prompt the user to select the SCOPE.m file path
-  if(exists("SCOPE_path")) {
+  if (exists("SCOPE_path")) {
     message("File path for SCOPE.m has already been set!")
   } else {
     # If the file path hasn't been set, use file.choose() to select a file
-    message("Please locate SCOPE.m in your file directory")
+    current_dir <- getwd()
+    message(sprintf("Please locate SCOPE.m in your file directory from %s", current_dir)) # nolint
     SCOPE_path <- file.choose()
     # Store the file path in a variable within the session
     assign("SCOPE_path", SCOPE_path, envir = .GlobalEnv)
@@ -29,12 +30,12 @@ run_scope <- function(){
 
   # Run the SCOPE.m script using the run_matlab_script() function
   matlabr::run_matlab_script(SCOPE_path,
-                  verbose = TRUE,
-                  desktop = FALSE,
-                  splash = FALSE,
-                  display = FALSE,
-                  wait = TRUE,
-                  single_thread = FALSE)
+    verbose = TRUE,
+    desktop = FALSE,
+    splash = FALSE,
+    display = FALSE,
+    wait = TRUE,
+    single_thread = FALSE)
 }
 
 # This code should remove the file path of SCOPE when you terminate your session
