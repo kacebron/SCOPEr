@@ -31,74 +31,151 @@ set_options(
 
 \item{lite}{Switch in RTMo().}
 
-\item{calc_fluor}{Calculation of fluorescence. This is a switch in SCOPE.m, calc_brdf().}
+\item{calc_fluor}{Calculation of fluorescence. This is a switch
+in SCOPE.m, calc_brdf().}
 
-\item{calc_planck}{Calculate spectrum of thermal radiation with spectral emissivity instead of broadband. WARNING! This is only effective with calc_ebal==1.}
+\item{calc_planck}{Calculate spectrum of thermal radiation with
+spectral emissivity instead of broadband. WARNING! This is only
+effective with calc_ebal==1.}
 
-\item{calc_xanthophyllabs}{Calculate dynamic xanthopyll absorption (zeaxanthin) for simulating PRI (photochemical reflectance index). WARNING! only effective with calc_ebal==1.}
+\item{calc_xanthophyllabs}{Calculate dynamic xanthopyll absorption
+(zeaxanthin) for simulating PRI (photochemical reflectance index).
+WARNING! only effective with calc_ebal==1.}
 
-\item{soilspectrum}{Calculate soil reflectance or use from a file in ./input/soil_spectra. Switch in SCOPE.m}
+\item{soilspectrum}{Calculate soil reflectance or use from a file
+in ./input/soil_spectra. Switch in SCOPE.m}
 
-\item{applTcorr}{Correct Vcmax and rate constants for temperature. This is only effective with Fluorescence_model == 0 i.e. for biochemical(). This is a switch in ebal().}
+\item{applTcorr}{Correct Vcmax and rate constants for temperature.
+This is only effective with Fluorescence_model == 0 i.e. for
+biochemical(). This is a switch in ebal().}
 
 \item{saveCSV}{(For User's Comfort) Switch in SCOPE.m, bin_to_csv().}
 
 \item{mSCOPE}{Switch in SCOPE.m.}
 
-\item{calc_directional}{Calculate BRDF and directional temperature for many angles specified in the file: directional. Warning! This is only effective with calc_ebal == 1. Be patient, this takes some time. This is a Switch in SCOPE.m, calc_brdf().}
+\item{calc_directional}{Calculate BRDF and directional temperature
+for many angles specified in the file: directional. Warning! This is
+only effective with calc_ebal == 1. Be patient, this takes some time.
+This is a Switch in SCOPE.m, calc_brdf().}
 
-\item{calc_vert_profiles}{Calculation of vertical profiles (per 60 canopy layers). Corresponding structure profiles. This is a Switch in SCOPE.m, RTMo() and ebal().}
+\item{calc_vert_profiles}{Calculation of vertical profiles (per 60
+canopy layers). Corresponding structure profiles. This is a Switch
+in SCOPE.m, RTMo() and ebal().}
 
-\item{soil_heat_method}{Method of ground heat flux (G) calculation. In soil_heat_method 0 and 1 soil thermal inertia (GAM) is calculated from inputs. Switch in SCOPE.m, select_input(), ebal().}
+\item{soil_heat_method}{Method of ground heat flux (G) calculation.
+In soil_heat_method 0 and 1 soil thermal inertia (GAM) is calculated
+from inputs. Switch in SCOPE.m, select_input(), ebal().}
 
-\item{calc_rss_rbs}{soil resistance for evaporation from the pore space (rss) and soil boundary layer resistance (rbs). Switch in select_input().}
+\item{calc_rss_rbs}{soil resistance for evaporation from the pore
+space (rss) and soil boundary layer resistance (rbs). Switch in
+select_input().}
 
 \item{MoninObukhov}{Switch in ebal().}
 
-\item{save_spectral}{(For User's Comfort) Save files with full spectrum. May reach huge sizes in long time-series. Switch in create_output_files_binary().}
+\item{save_spectral}{(For User's Comfort) Save files with full
+spectrum. May reach huge sizes in long time-series. Switch in
+create_output_files_binary().}
 
 \item{Fluorescence_model}{Switch in ebal().}
 }
 \value{
 \strong{MAIN}
 
-\strong{verify} Default value is TRUE which means the run will compare output to the verification dataset to test the integrity of your SCOPE copy. FALSE will switch off the verification mode. Note: You would need to switch off the verification mode if you want to do actual simulations.
+\strong{verify} Default value is TRUE which means the run will
+compare output to the verification dataset to test the integrity of
+your SCOPE copy. FALSE will switch off the verification mode.
+Note: You would need to switch off the verification mode if you
+want to do actual simulations.
 
-\strong{simulation} Default value is 0 which is equal to individual runs. Other options can be 1 (time series runs) or 2 (for look-up table).
+\strong{simulation} Default value is 0 which is equal to
+individual runs. Other options can be 1 (time series runs) or 2
+(for look-up table).
 
 \strong{OTHERS}
 
-\strong{lite} By default, the value is TRUE which means it will execute Lite SCOPE with \link{nlayers x 1} sunlit leaves, sunlit leaf inclinations are not accounted for. FALSE will run in normal SCOPE execution with \link{13 x 36 x nlayers} sunlit leaves. This is equivalent to changing to 0 in the setoptions.csv file.
+\strong{lite} By default, the value is TRUE which means it will
+execute Lite SCOPE with \link{nlayers x 1} sunlit leaves, sunlit leaf
+inclinations are not accounted for. FALSE will run in normal SCOPE
+execution with \link{13 x 36 x nlayers} sunlit leaves. This is equivalent
+to changing to 0 in the setoptions.csv file.
 
-\strong{calc_fluor} By default, the value is TRUE which means RTMf() is launched in SCOPE.m and calc_brdf() (if calc_directional). Total emitted fluorescence is calculated by SCOPE.m. If value is FALSE, no fluorescence output.
+\strong{calc_fluor} By default, the value is TRUE which means
+RTMf() is launched in SCOPE.m and calc_brdf() (if calc_directional).
+Total emitted fluorescence is calculated by SCOPE.m. If value is
+FALSE, no fluorescence output.
 
-\strong{calc_planck} By default, the value is TRUE which means RTMt_planck() is launched in SCOPE.m and calc_brdf() (if calc_directional).Calculation is done per each wavelength thus takes more time than Stefan-Boltzman. If value is FALSE, RTMt_sb() - broadband brightness temperature is calculated in accordance to Stefan-Boltzman’s equation.
+\strong{calc_planck} By default, the value is TRUE which means
+RTMt_planck() is launched in SCOPE.m and calc_brdf() (if calc_directional).
+Calculation is done per each wavelength thus takes more time than
+Stefan-Boltzman. If value is FALSE, RTMt_sb() - broadband brightness
+temperature is calculated in accordance to Stefan-Boltzman’s equation.
 
-\strong{calc_xanthophyllabs} By default, the value is TRUE which means RTMz() is launched in SCOPE.m and calc_brdf() (if calc_directional). If FALSE, value is changed to 0.
+\strong{calc_xanthophyllabs} By default, the value is TRUE which
+means RTMz() is launched in SCOPE.m and calc_brdf() (if calc_directional).
+If FALSE, value is changed to 0.
 
-\strong{soilspectrum} By default, the value is FALSE which means it uses soil spectrum from the file with soil.spectrum default file is soilnew.txt, can be changed on the filenames sheet soil_file cell variable name is rsfile. If value is TRUE, it will simulate soil spectrum with the BSM model (BSM()). Parameters are fixed in code.
+\strong{soilspectrum} By default, the value is FALSE which means it
+uses soil spectrum from the file with soil.spectrum default file is
+soilnew.txt, can be changed on the filenames sheet soil_file cell
+variable name is rsfile. If value is TRUE, it will simulate soil
+spectrum with the BSM model (BSM()). Parameters are fixed in code.
 
-\strong{fluorescence_model} By default, the value is FALSE which means it will run empirical, with sigmoid for Kn: biochemical() (Berry-Van der Tol). If value is TRUE, it will use biochemical_MD12() (von Caemmerer-Magnani).
+\strong{fluorescence_model} By default, the value is FALSE which
+means it will run empirical, with sigmoid for Kn: biochemical()
+(Berry-Van der Tol). If value is TRUE, it will use biochemical_MD12()
+(von Caemmerer-Magnani).
 
-\strong{applTcorr} By default the value is TRUE which means it will do correction in accordance to Q10 rule. If FALSE, it will change the value to 0 (no description in SCOPE's github).
+\strong{applTcorr} By default the value is TRUE which means it
+will do correction in accordance to Q10 rule. If FALSE, it will
+change the value to 0 (no description in SCOPE's github).
 
-\strong{saveCSV} By default, the value is TRUE which means it will convert .bin files to .csv with bin_to_csv(), delete .bin files. If value is FALSE, it will leave .bin files in output folder.
+\strong{saveCSV} By default, the value is TRUE which means it
+will convert .bin files to .csv with bin_to_csv(), delete .bin files.
+If value is FALSE, it will leave .bin files in output folder.
 
-\strong{mSCOPE} By default, the value is FALSE which means it will do a traditional single layer SCOPE. If changed to TRUE, it will run a multilayer mSCOPE (see details here: https://scope-model.readthedocs.io/en/master/mSCOPE.html#mscope).
+\strong{mSCOPE} By default, the value is FALSE which means it will
+do a traditional single layer SCOPE. If changed to TRUE, it will run
+a multilayer mSCOPE
+(see details here: https://scope-model.readthedocs.io/en/master/mSCOPE.html#mscope). # nolint
 
-\strong{calc_directional} Default value is FALSE. If TRUE, struct directional is loaded from the file directional. calc_brdf() is launched in SCOPE.m.
+\strong{calc_directional} Default value is FALSE. If TRUE, struct
+directional is loaded from the file directional. calc_brdf() is launched
+in SCOPE.m.
 
-\strong{calc_vert_profiles} Default value is FALSE which means profiles are not calculated. If TRUE, Photosynthetically active radiation (PAR) per layer is calculated in RTMo(). Energy, temperature and photosynthesis fluxes per layer are calculated in ebal(). Fluorescence fluxes are calculated in RTMf() if (calc_fluor).
+\strong{calc_vert_profiles} Default value is FALSE which means profiles
+are not calculated. If TRUE, Photosynthetically active radiation (PAR) per
+layer is calculated in RTMo(). Energy, temperature and photosynthesis fluxes
+per layer are calculated in ebal(). Fluorescence fluxes are calculated in
+RTMf() if (calc_fluor).
 
-\strong{soil_heat_method} Default value is 2 which means as constant fraction (0.35) of soil net radiation. Change to 0 and it will do standard calculation of thermal inertia from soil characteristic. 1 means empirically calibrated formula from soil moisture content. Soil_Inertia1() in select_input().
+\strong{soil_heat_method} Default value is 2 which means as constant
+fraction (0.35) of soil net radiation. Change to 0 and it will do standard
+calculation of thermal inertia from soil characteristic. 1 means empirically
+calibrated formula from soil moisture content. Soil_Inertia1() in
+select_input().
 
-\strong{calc_rss_rbs} Default value is FALSE which means it will use resistance rss and rbs as provided in inputdata soil. If value is TRUE, it will calculate rss from soil moisture content and correct rbs for LAI calc_rssrbs().
+\strong{calc_rss_rbs} Default value is FALSE which means it will use
+resistance rss and rbs as provided in inputdata soil. If value is TRUE,
+it will calculate rss from soil moisture content and correct rbs for
+LAI calc_rssrbs().
 
-\strong{MoninObukhov} Default value is TRUE which means it will apply Monin-Obukhov atmospheric stability correction. If FALSE, it will not apply Monin-Obukhov atmospheric stability correction.
+\strong{MoninObukhov} Default value is TRUE which means it will apply
+Monin-Obukhov atmospheric stability correction. If FALSE, it will not
+apply Monin-Obukhov atmospheric stability correction.
 
-\strong{save_spectral} Default value is TRUE which will save, FALSE it will not save.
+\strong{save_spectral} Default value is TRUE which will save,
+FALSE it will not save.
 }
 \description{
-This function helps you modify setoptions.csv. It reads in a CSV file of options for SCOPE, modifies the values of those options based on the input parameters, and writes the updated options back to the CSV file. The function takes several parameters with default values, primarily \code{verify} and \code{simulation}, which control aspects of the SCOPE simulation. This function is intended to make it easy to customize the SCOPE simulation options without modifying the underlying MATLAB code directly.
+This function helps you modify setoptions.csv. It reads in a CSV
+file of options for SCOPE, modifies the values of those options
+based on the input parameters, and writes the updated options back
+to the CSV file. The function takes several parameters with default
+values, primarily \code{verify} and \code{simulation}, which control aspects
+of the SCOPE simulation. This function is intended to make it easy
+to customize the SCOPE simulation options without modifying the
+underlying MATLAB code directly.
+}
+\details{
 For User's Comfort, run this code with arguments verify = FALSE
 }

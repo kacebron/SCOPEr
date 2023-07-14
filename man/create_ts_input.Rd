@@ -16,23 +16,34 @@ create_ts_input(
 )
 }
 \arguments{
-\item{start_time}{POSIXct object in "\%Y-\%m-\%d \%H:\%M" format -- this is the first instance for SCOPE to model.}
+\item{start_time}{POSIXct object in "\%Y-\%m-\%d \%H:\%M" format --
+this is the first instance for SCOPE to model.}
 
-\item{end_time}{POSIXct object in "\%Y-\%m-\%d \%H:\%M" format -- this is the last instance for SCOPE to model.}
+\item{end_time}{POSIXct object in "\%Y-\%m-\%d \%H:\%M" format --
+this is the last instance for SCOPE to model.}
 
-\item{span}{character string that can be read by seq.POSIXct e.g. "1 hour" or "30 min" --  Should be divisible into the difference between start.time and end.time.}
+\item{span}{character string that can be read by seq.POSIXct
+e.g. "1 hour" or "30 min" --  Should be divisible into the
+difference between start.time and end.time.}
 
-\item{par_constant}{a numeric vector of length C -- SCOPE input parameter values that will be repeated for every time step. C is the number of constant variables.}
+\item{par_constant}{a numeric vector of length C -- SCOPE input
+parameter values that will be repeated for every time step. C
+is the number of constant variables.}
 
-\item{par_variable}{T x V matrix -- SCOPE input parameter values change over some or all time steps. T is number of time steps and V is number of varying variables.}
+\item{par_variable}{T x V matrix -- SCOPE input parameter values
+change over some or all time steps. T is number of time steps
+and V is number of varying variables.}
 
 \item{dir_name}{character string -- name of directory to save the input file.}
 
-\item{filename}{the base.name of the input file to be saved (omitting the '.csv').}
+\item{filename}{the base.name of the input file to be saved
+(omitting the '.csv').}
 
-\item{run_nighttime}{logical determining whether SCOPE should run simulations where Rin >= 0 (i.e., at night).}
+\item{run_nighttime}{logical determining whether SCOPE should
+run simulations where Rin >= 0 (i.e., at night).}
 
-\item{par_constant_type}{replace the _type with any of the following: aero, angles, biochem, canopy, meteo, PROSPECT, soil, timeseries}
+\item{par_constant_type}{replace the _type with any of the
+following: aero, angles, biochem, canopy, meteo, PROSPECT, soil, timeseries}
 }
 \description{
 This function uses start and end times, a grain of resolution, and constant

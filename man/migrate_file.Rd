@@ -7,5 +7,13 @@
 migrate_file()
 }
 \description{
-The migrate_file() function is a utility function that copies files from the SCOPEr library to your local copy of SCOPE. The function takes no arguments, and the file paths are hard-coded within the function. The files to be copied include a set of CSV files and a dataset folder. The function checks whether the files have been successfully copied by comparing their modification time to the current time, and issues appropriate messages depending on the result of the check. Run this function before running the run_scope()
+The migrate_file() function is a utility function that copies
+files from the SCOPEr library to your local copy of SCOPE. The
+function takes no arguments, and the file paths are hard-coded
+within the function. The files to be copied include a set of
+CSV files and a dataset folder. The function checks whether the
+files have been successfully copied by comparing their modification
+time to the current time, and issues appropriate messages
+depending on the result of the check. Run this function before
+running the run_scope()
 }

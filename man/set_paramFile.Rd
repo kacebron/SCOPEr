@@ -7,10 +7,16 @@
 set_paramFile(input = "input_data_latin_hypercube.csv")
 }
 \arguments{
-\item{input}{Change the name of the .csv file where input data will be grabbed by SCOPE.}
+\item{input}{Change the name of the .csv file where input data
+will be grabbed by SCOPE.}
 }
 \value{
-\strong{input} By default, the value of this argument is "input_data_latin_hypercube.csv" which is also the default setting in SCOPE. Change this to "input_data_default.csv" if you want to simulate individual runs or time series experiments. Note: You can also changed the default values inside the input_data_default.csv using the function input_data_default().
+\strong{input} By default, the value of this argument is
+"input_data_latin_hypercube.csv" which is also the default setting
+in SCOPE. Change this to "input_data_default.csv" if you want to
+simulate individual runs or time series experiments. Note: You can
+also changed the default values inside the input_data_default.csv
+using the function input_data_default().
 }
 \description{
 This function helps you modify set_parameter_filenames.csv input file.

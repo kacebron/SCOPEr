@@ -43,9 +43,12 @@ set_filenames(
 \arguments{
 \item{simulation_name}{Lets you change the simulation name.}
 
-\item{dataset_dir}{Lets you specify the directory of the dataset containing the input files for time series simulations}
+\item{dataset_dir}{Lets you specify the directory of the
+dataset containing the input files for time series simulations}
 
-\item{meteo_ec_csv}{Lets you specify the name of the .csv file that contains the meteorological information to be used in time series runs (more of this in the create_ts_input() function)}
+\item{meteo_ec_csv}{Lets you specify the name of the .csv file
+that contains the meteorological information to be used in time
+series runs (more of this in the create_ts_input() function)}
 
 \item{t}{Julian day (decimal)}
 
@@ -69,7 +72,8 @@ set_filenames(
 
 \item{tto}{Observer zenith angle}
 
-\item{psi}{Relative azimuth angle: the azimuthal difference between solar and observation angle.}
+\item{psi}{Relative azimuth angle: the azimuthal difference
+between solar and observation angle.}
 
 \item{Cab}{Chlorophyll a b content (ug cm-2)}
 
@@ -101,14 +105,19 @@ set_filenames(
 
 \item{Ca}{atmospheric CO2 concentration (ppm)}
 
-\item{Vcmax25}{maximum carboxylation capacity (at optimum temperature of 25C, former Vcmo) (umol m-2 s-1)}
+\item{Vcmax25}{maximum carboxylation capacity (at optimum
+temperature of 25C, former Vcmo) (umol m-2 s-1)}
 
-\item{BallBerrySlope}{slope of Ball-Berry stomatal conductance model (former m)}
+\item{BallBerrySlope}{slope of Ball-Berry stomatal
+conductance model (former m)}
 
-\item{Car}{Carotenoid content. Usually 25\% of Cab if options.Cca_function_of_Cab (ug cm-2)}
+\item{Car}{Carotenoid content. Usually 25\% of Cab if
+options.Cca_function_of_Cab (ug cm-2)}
 }
 \value{
-\strong{tts} Lets you specify the column name for the solar zenith angle if th value is TRUE. Place a FALSE value if latitude and longitude are specified in the input.filename.csv
+\strong{tts} Lets you specify the column name for the solar
+zenith angle if th value is TRUE. Place a FALSE value if
+latitude and longitude are specified in the input.filename.csv
 }
 \description{
 This function helps you modify filenames.csv
