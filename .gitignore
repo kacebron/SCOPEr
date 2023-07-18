@@ -49,3 +49,6 @@ po/*~
 rsconnect/
 .Rproj.user
 inst/doc
+
+# Others
+.DS_Store
