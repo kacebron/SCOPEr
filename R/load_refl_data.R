@@ -13,21 +13,8 @@
 #'
 #' @return A data frame containing the combined reflectance data.
 #'
-#' @importFrom utils read.csv
-#' @importFrom base setwd
-#' @importFrom base paste0
-#' @importFrom base min
-#' @importFrom base max
-#' @importFrom base floor
-#' @importFrom base which
-#' @importFrom base matrix
-#' @importFrom base cbind
-#' @importFrom base colnames
-#' @importFrom base return
-#'
 #' @export
-#' @examples
-#' data <- load_refl_data(".", "2022-120", "2022-130")
+#'
 load_refl_data <- function(folder = ".", start_time, end_time) {
   # Set the working directory to the specified folder
   setwd(folder)

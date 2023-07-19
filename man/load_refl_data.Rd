@@ -24,6 +24,3 @@ This function loads reflectance data from a file,
 combines it with year and DoY from aPAR.csv,
 and returns a data frame.
 }
-\examples{
-data <- load_refl_data(".", "2022-120", "2022-130")
-}
