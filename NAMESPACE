@@ -2,6 +2,7 @@
 
 export(aggregate_data)
 export(create_ts_input)
+export(input_data_default)
 export(load_par_constant)
 export(load_par_variable)
 export(run_scope)
