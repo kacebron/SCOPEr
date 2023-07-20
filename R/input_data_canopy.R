@@ -21,7 +21,7 @@ input_data_canopy <- function(LAI = 3,
                               Cv = 1,
                               crowndiameter = 1
                               ){
-  input_data_default_csv <- system.file("extdata", "input_data_default.csv", package="SCOPEr")
+  input_data_default_csv <- "~/Documents/1_postdoc_projects/1_serc_nasa_roses/02_projects/SCOPE/input/input_data_default.csv"
   input_SCOPE <- readr::read_file(input_data_default_csv)
   input_SCOPE <- stringr::str_replace_all(input_SCOPE, c("(\\n)$" = "",
                                                 "(?<=LAI,).+" = LAI,

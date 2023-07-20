@@ -2,7 +2,7 @@ Package: SCOPEr
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person("Kelvih", "Acebron", , "kacebron@gmail.com", role = c("aut", "cre"),
+    person("Kelvin", "Acebron", , "kacebron@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8523-0256"))
 Description: Runs SCOPE model in R language.
 License: MIT + file LICENSE

@@ -49,9 +49,9 @@
 #'
 #' @export
 set_filenames <- function(
-  simulation_name,
-  dataset_dir,
-  meteo_ec_csv,
+  simulation_name = NULL,
+  dataset_dir = "for_verification",
+  meteo_ec_csv = "input_data_latin_hypercube_ts.csv",
   t = TRUE,
   Rin = TRUE, # nolint
   Rli = FALSE, # nolint
@@ -83,13 +83,13 @@ set_filenames <- function(
   Vcmax25 = TRUE, # nolint
   BallBerrySlope = TRUE) { # nolint
 
-  filenames_csv <- system.file("extdata", "filenames.csv", package = "SCOPEr")
+  filenames_csv <- "~/Documents/1_postdoc_projects/1_serc_nasa_roses/02_projects/SCOPE/input/filenames.csv"
   filenames <- readr::read_file(filenames_csv)
   filenames <- stringr::str_replace_all(filenames,
     c("(\\n)$" = "",
     "(?<=Simulation_Name,).+" = simulation_name,
     "(?<=Dataset_dir,).+" = dataset_dir,
-    "(?<=meteo_ec_csv,)(?! ).+" = paste0((meteo_ec_csv), ".csv"),
+    "(?<=meteo_ec_csv,)(?! ).+" = meteo_ec_csv,
     "(?<=\\nt,)((t){1,}|)" = ifelse(t == TRUE, "t", ""),
     "(?<=Rin,)((Rin){1,}|)" = ifelse(Rin == TRUE, "Rin", ""),
     "(?<=Rli,)((Rli){1,}|)" = ifelse(Rli == TRUE, "Rli", ""),

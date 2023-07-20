@@ -14,8 +14,7 @@
 #' @export
 #'
 set_paramFile <- function(input = "input_data_latin_hypercube.csv") { # nolint
-  set_paramfile_csv <- system.file("extdata",
-    "set_parameter_filenames.csv", package = "SCOPEr")
+  set_paramfile_csv <- "~/Documents/1_postdoc_projects/1_serc_nasa_roses/02_projects/SCOPE/set_parameter_filenames.csv"
   set_param <- readr::read_file(set_paramfile_csv)
   set_param <- stringr::str_replace(set_param,
     stringr::str_split(set_param, ", ")[[1]][3], input)

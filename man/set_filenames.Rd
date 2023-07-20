@@ -5,9 +5,9 @@
 \title{Modify filenames.csv}
 \usage{
 set_filenames(
-  simulation_name,
-  dataset_dir,
-  meteo_ec_csv,
+  simulation_name = NULL,
+  dataset_dir = "for_verification",
+  meteo_ec_csv = "input_data_latin_hypercube_ts.csv",
   t = TRUE,
   Rin = TRUE,
   Rli = FALSE,
