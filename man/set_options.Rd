@@ -45,8 +45,10 @@ WARNING! only effective with calc_ebal==1.}
 \item{soilspectrum}{Calculate soil reflectance or use from a file
 in ./input/soil_spectra. Switch in SCOPE.m}
 
+\item{fluorescence_model}{Switch in ebal().}
+
 \item{applTcorr}{Correct Vcmax and rate constants for temperature.
-This is only effective with Fluorescence_model == 0 i.e. for
+This is only effective with fluorescence_model == 0 i.e. for
 biochemical(). This is a switch in ebal().}
 
 \item{saveCSV}{(For User's Comfort) Switch in SCOPE.m, bin_to_csv().}
@@ -75,8 +77,6 @@ select_input().}
 \item{save_spectral}{(For User's Comfort) Save files with full
 spectrum. May reach huge sizes in long time-series. Switch in
 create_output_files_binary().}
-
-\item{Fluorescence_model}{Switch in ebal().}
 }
 \value{
 \strong{MAIN}

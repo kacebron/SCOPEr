@@ -2,6 +2,10 @@
 #'
 #' This function runs SCOPE.m in R language.
 #'
+#' @param SCOPE_path filepath where SCOPE.m is located
+#'
+#' @importFrom matlabr run_matlab_script
+#'
 #' @return The function accepts a string parameter, path, that represents the directory path where SCOPE.m is located. If the path is not specified, the function prompts the user to choose the file location interactively. Once the path is determined, the function saves it to an R environment variable named SCOPE_PATH, which can be used in subsequent function calls to avoid re-locating SCOPE.m.
 #'
 #' @return Additionally, the function creates an R session hook that removes the SCOPE_PATH variable when the R session is terminated, ensuring that the path is not persisted across different sessions.
@@ -11,7 +15,7 @@
 #' @export
 
 
-run_scope <- function() {
+run_scope <- function(SCOPE_path = ".././SCOPE/SCOPE.m") {
 
   # Prompt the user to select the SCOPE.m file path
   if (exists("SCOPE_path")) {
@@ -39,4 +43,4 @@ run_scope <- function() {
 }
 
 # This code should remove the file path of SCOPE when you terminate your session
-on.exit(rm("SCOPE_path", envir = .GlobalEnv))
+#on.exit(rm("SCOPE_path", envir = .GlobalEnv))

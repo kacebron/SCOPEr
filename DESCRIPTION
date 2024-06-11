@@ -1,16 +1,21 @@
 Package: SCOPEr
-Title: What the Package Does (One Line, Title Case)
+Title: Runs SCOPE in R
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Kelvin", "Acebron", , "acebron.research@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-8523-0256"))
+Description: A system in that runs SCOPE in R, including functions that collects and analyses the output of model run.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
+Imports: 
+    matlabr,
+    readr,
+    stringr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3

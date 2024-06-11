@@ -4,7 +4,10 @@
 \alias{run_scope}
 \title{Runs SCOPE.m in R}
 \usage{
-run_scope()
+run_scope(SCOPE_path = ".././SCOPE/SCOPE.m")
+}
+\arguments{
+\item{SCOPE_path}{filepath where SCOPE.m is located}
 }
 \value{
 The function accepts a string parameter, path, that represents the directory path where SCOPE.m is located. If the path is not specified, the function prompts the user to choose the file location interactively. Once the path is determined, the function saves it to an R environment variable named SCOPE_PATH, which can be used in subsequent function calls to avoid re-locating SCOPE.m.
