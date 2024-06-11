@@ -11,6 +11,8 @@
 #'
 #' For User's Comfort, run this code with arguments verify = FALSE
 #'
+#' @importFrom readr read_file
+#' @importFrom stringr str_replace_all
 #' @param verify (For User's Comfort) Lets you switch verification mode.
 #' @param simulation Defines rules for input reading.
 #' @param lite Switch in RTMo().
@@ -24,9 +26,9 @@
 #' WARNING! only effective with calc_ebal==1.
 #' @param soilspectrum Calculate soil reflectance or use from a file
 #' in ./input/soil_spectra. Switch in SCOPE.m
-#' @param Fluorescence_model Switch in ebal().
+#' @param fluorescence_model Switch in ebal().
 #' @param applTcorr Correct Vcmax and rate constants for temperature.
-#' This is only effective with Fluorescence_model == 0 i.e. for
+#' This is only effective with fluorescence_model == 0 i.e. for
 #' biochemical(). This is a switch in ebal().
 #' @param saveCSV (For User's Comfort) Switch in SCOPE.m, bin_to_csv().
 #' @param mSCOPE Switch in SCOPE.m.
