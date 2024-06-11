@@ -2,6 +2,7 @@
 
 export(run_scope)
 export(set_options)
+export(set_paramFile)
 importFrom(matlabr,run_matlab_script)
 importFrom(readr,read_file)
 importFrom(stringr,str_replace_all)
